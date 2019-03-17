@@ -345,6 +345,12 @@
 	font-family:Gadugi;
 }
 
+.buttonLogin:hover{
+	background: #bac675;
+	transition: .9s;
+}
+	
+
 .buttonRegister{
 	background: #b7c0ce;
 	cursor:pointer;
