@@ -64,8 +64,10 @@
 	.sectionAdministrator{
         min-height: 550px;
         width:96%;
-        margin:0 auto;
+       /* margin:0 auto; */
         margin-bottom: 100px;
+        float:left;
+        margin-left: 50px;
 	}
 
 	.sectionLogin{
