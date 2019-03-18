@@ -1,0 +1,207 @@
+
+	body{
+		margin:0;
+		padding:0;
+	    background:#b7c0ce;
+		padding-top:120px;
+        font-family:Gadugi;
+	    }
+
+	    .navTitle{
+	    	color:#fff;
+	    	font-size: 22px; 
+	    	font-family:Gadugi;
+	    }
+		
+	nav{
+	    position:fixed;
+		width:100%;
+         z-index:111111111;
+		 margin-top:-120px;
+
+		
+	}
+	
+	nav ul{
+		
+		background:#19283f;
+		padding:13px 0 13px 0;
+		margin:0;
+	}
+	
+	nav ul li{
+		display:inline-block;
+		padding-right:10px;
+		padding-left:30px;
+	    margin:0;
+	}
+	
+	nav  a{
+		text-decoration:none;
+		color:#fff;
+		margin:0;
+		font-size:15px;
+		font-family:Gadugi;
+		
+		
+	}
+	
+	nav ul li a:hover{
+		color:#4699f2;
+
+	}
+	
+	section{
+        min-height: 1000px;
+        width:96%;
+        margin:0 auto;
+        margin-bottom: 100px;
+	}
+
+	.sectionAdministrator{
+        min-height: 550px;
+        width:96%;
+        margin:0 auto;
+        margin-bottom: 100px;
+	}
+
+
+	.center{
+		width:76%;
+        height:1000px;
+        float:left;
+        color:#fff;
+        border-radius: 8px 8px 0px 0px;
+        background: #111b2b;
+   	}
+
+   	.centerAdministrator{
+		width:100%;
+        height:550px;
+        float:left;
+        color:#fff;
+        border-radius: 8px 8px 0px 0px;
+        background: #111b2b;
+   	}
+
+	.left{
+		width:23%;
+		background:#111b2b;
+		min-height: 400px;
+		float:left;
+		color: #fff;
+		border-radius: 8px 8px 0px 0px;
+	    margin-right: 1%;
+		
+	}
+
+	.item{
+		width:23%;
+        height: 220px;
+        float:left;
+        text-align: center;
+        margin-bottom: 50px;
+        background:#b7c0ce;
+        margin-right: 5%;
+        margin-left: 5%;
+        padding-top: 30px;
+        color: #111b2b;
+	}
+
+	.buttonAdministratorLeft{
+		width: 25%;
+        height: 150px;
+        float:left;
+        text-align: center;
+        margin-bottom: 50px;
+        background:#b7c0ce;
+        margin-right: 15%;
+        margin-left: 15%;
+        padding-top: 30px;
+        color: #111b2b;
+	}
+
+	.buttonAdministratorLeft:hover{
+		transition-duration: 0.4s;
+		background: #4699f2;
+	}
+
+	.buttonAdministratorRight{
+		width: 25%;
+        height: 150px;
+        float:left;
+        text-align: center;
+        margin-bottom: 50px;
+        background:#b7c0ce;
+        margin-right: 15%;
+        margin-left: 0%;
+        padding-top: 30px;
+        color: #111b2b;
+	}
+
+	.buttonAdministratorRight:hover{
+		transition-duration: 0.4s;
+		background: #4699f2;
+	}
+
+
+
+	.item:hover{
+		transition-duration: 0.4s;
+		background: #4699f2;
+	}
+
+	.secTitle{
+		width: 100%;
+		text-align: center;
+		font-size: 17px;
+		margin-bottom: 100px;
+	}
+
+	.leftTitle{
+		width: 100%;
+		text-align: center;
+		font-size: 15px;
+        background: #111b2b;
+	}
+
+	.item img{
+		width:auto;
+		height: 150px;
+	}
+
+	.imgAdministrator{
+		width:70px;
+		height:70px;
+	}
+
+	.itemTitle{
+     font-size: 20px;
+	}
+
+	.buttonAdministratorContent{
+     font-size: 20px;
+     text-align: center;
+	}
+
+	
+
+	.catList{
+		margin-top: 80px;
+		list-style-type: none;
+	}
+
+	.catList a{
+     color: #fff;
+     text-decoration: none;
+     margin-top: 3px;
+     margin-bottom: 3px;
+	}
+	.catList li{
+		margin-top: 3px;
+     margin-bottom: 3px;
+	}
+
+	.catList a:hover{
+      color: #4699f2;
+	}
