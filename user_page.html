@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+     
+	 <html>
+     
+	 <head>
+     
+	 <meta charset="utf-8"/>
+	 
+	 <title>Online Software Repository</title>
+     
+	 <link rel="stylesheet" type="text/css" href="css/style.css"/> 
+	 
+	 <link rel='icon' href="img/fav.png">
+     
+	 </head>
+     
+	 <body>
+
+<!-- Bara de navigare -->
+	 <nav>
+	   <div class="topnav">
+  <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
+  <a href="#"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
+  <a href="#"><img src="img/categories.png" width="22px" height="22px" style="margin-bottom: -3px;"> Categorii</a>
+    <a href="#"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
+     <a href="#" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
+  <form class="searchForm">
+  <input type="text" placeholder="Search..">
+  <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
+</form>
+</div> 
+	 </nav>
+<!-- Sfarsit bara de navigare -->
+
+	 <section >
+	 	<div class="left">
+
+       <div class="dropdown">
+  <a href="user_page.html"><button class="dropbtn"><img class="dropImg" src="img/grid.png" width="22px" height="22px" style="margin-bottom: -3px;">Aplicatiile mele</button></a>
+</div>
+
+       <div class="dropdown">
+  <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button>
+</div>
+
+
+	 	</div>
+	 	<div class="center">
+	 		<div class="secTitle">
+	 			<p>Aplicatiile mele</p>
+	 		</div>
+	 		<div class="filterClass">
+	 			<span>Ordoneaza dupa:</span> 
+	 				<select>
+	 					<option value="">Cele mai descarcate</option>
+	 					<option value="">Cele mai recente</option>
+	 					<option value="">Numar review-uri </option>
+	 					<option value="">Pret crescator</option>
+	 					<option value="">Pret descrescator</option>
+	 				</select>
+	 			
+	 		</div>
+	 		<a href="#">
+	 		<div class="item edit">
+	 			<img src="img/netflix.png"/>
+	 			<p class="itemTitle"> Netflix</p>
+	 			<button style="float: left;margin-left: 5px;">Sterge</button>
+	 			<button style="float: right;margin-right: 5px;">Editeaza</button>
+	 		</div>
+	 	    </a>
+	 	    <a href="#">
+	 		<div class="item">
+	 			<img src="img/spotify.png"/>
+	 			<p class="itemTitle">Spotify</p>
+	 		</div>
+	 	</a>
+	 	<a href="#">
+	 		<div class="item">
+	 			<img src="img/tracing.png"/>
+	 			<p class="itemTitle">Dolby Acces</p>
+	 		</div>
+	 	</a>
+	 	<a href="#">
+	 		<div class="item">
+	 			<img src="img/touchMail.png"/>
+	 			<p class="itemTitle">Touch Mail</p>
+	 		</div>
+	 	</a>
+	 	<a href="#">
+	 		<div class="item">
+	 			<img src="img/Plex.png"/>
+	 			<p class="itemTitle">Plex</p>
+	 		</div>
+	 	</a>
+	 	<a href="#">
+	 		<div class="item">
+	 			<img src="img/tracing.png"/>
+	 			<p class="itemTitle">Tracing</p>
+	 		</div>
+	 	</a>
+
+
+	 	</div>
+	</section>
+	      
+	<script>
+function myFunction(x) {
+  document.getElementById(x).classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+     </body>
+     </html>
