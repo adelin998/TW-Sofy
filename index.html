@@ -34,10 +34,11 @@
 
 	 <section >
 	 	<div class="left">
-	 		<div class="leftTitle">
+	 	<!--	<div class="leftTitle">
 	 			<h2>Categorii</h2>
 	 		</div>
 	 		<ul class="catList">
+
 	 				<li><a href="#"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Afacere</a></li>
 	 				<li><a href="#"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Arta si design</a></li>
 	 				<li><a href="#"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Comunicare</a></li>
@@ -48,11 +49,57 @@
 	 				<li><a href="#"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Familie</a></li>
 	 				<li><a href="#"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Jocuri</a></li>
 
-	 			</ul>
+	 			</ul> -->
+       <div class="dropdown">
+  <button onclick="myFunction('myDropdown1')" class="dropbtn"><img class="dropImg" src="img/down.png" width="22px" height="22px" style="margin-bottom: -3px;">Categorii</button>
+  <div id="myDropdown1" class="dropdown-content ">
+    <a href="#home"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Afacere</a>
+    <a href="#about"><img src="img/art.png" width="16px" height="16px" style="margin-bottom: -3px;"> Arta si design</a>
+    <a href="#"><img src="img/communication.png" width="16px" height="16px" style="margin-bottom: -3px;"> Comunicare</a>
+     <a href="#"><img src="img/shop.png" width="16px" height="16px" style="margin-bottom: -3px;"> Cumparaturi</a>
+	 <a href="#"><img src="img/mask.png" width="16px" height="16px" style="margin-bottom: -3px;"> Divertisment</a>
+	 <a href="#"><img src="img/medical.png" width="16px" height="16px" style="margin-bottom: -3px;"> Domeniul medical</a>
+	 <a href="#"><img src="img/education.png" width="16px" height="16px" style="margin-bottom: -3px;"> Educatie</a>
+	 <a href="#"><img src="img/family.png" width="16px" height="16px" style="margin-bottom: -3px;"> Familie</a>
+	 <a href="#"><img src="img/games.png" width="16px" height="16px" style="margin-bottom: -3px;"> Jocuri</a>
+
+  </div>
+</div>
+
+       <div class="dropdown">
+  <button onclick="myFunction('myDropdown2')" class="dropbtn"><img class="dropImg" src="img/down.png" width="22px" height="22px" style="margin-bottom: -3px;">Sistem de operare</button>
+  <div id="myDropdown2" class="dropdown-content">
+    <a href="#home"><img src="img/windows.png" width="16px" height="16px" style="margin-bottom: -3px;"> Windows</a>
+    <a href="#about"><img src="img/linux.png" width="16px" height="16px" style="margin-bottom: -3px;"> Linux</a>
+     <a href="#"><img src="img/apple.png" width="16px" height="16px" style="margin-bottom: -3px;"> Mac OS</a>
+
+  </div>
+</div>
+
+       <div class="dropdown">
+  <button onclick="myFunction('myDropdown3')" class="dropbtn"><img class="dropImg" src="img/down.png" width="22px" height="22px" style="margin-bottom: -3px;">Pret</button>
+  <div id="myDropdown3" class="dropdown-content">
+    <a href="#home"><img src="img/money1.png" width="16px" height="16px" style="margin-bottom: -3px;"> Gratis</a>
+    <a href="#about"><img src="img/money2.png" width="16px" height="16px" style="margin-bottom: -3px;"> Cu plata</a>
+
+  </div>
+</div>
+
 	 	</div>
 	 	<div class="center">
 	 		<div class="secTitle">
 	 			<p>Cele mai descarcate aplicatii</p>
+	 		</div>
+	 		<div class="filterClass">
+	 			<span>Ordoneaza dupa:</span> 
+	 				<select>
+	 					<option value="">Cele mai descarcate</option>
+	 					<option value="">Cele mai recente</option>
+	 					<option value="">Numar review-uri </option>
+	 					<option value="">Pret crescator</option>
+	 					<option value="">Pret descrescator</option>
+	 				</select>
+	 			
 	 		</div>
 	 		<a href="#">
 	 		<div class="item">
@@ -126,12 +173,25 @@
 	 	</a>
 	 	</div>
 	</section>
-	
+	      
+	<script>
+function myFunction(x) {
+  document.getElementById(x).classList.toggle("show");
+}
 
-	
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
-      
-	   
      </body>
-
      </html>
