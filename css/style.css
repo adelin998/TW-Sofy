@@ -175,6 +175,7 @@
         color: #fff;
         opacity: .66;
         border-radius: 3px;
+        display: block;
 	}
 
 	.buttonAdministratorLeft{
@@ -778,4 +779,8 @@
    margin-top: 10px;
    float: left;
    margin-left: 30%;
+}
+
+#item{
+	display: block;
 }
