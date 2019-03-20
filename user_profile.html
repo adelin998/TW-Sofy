@@ -23,7 +23,7 @@
   <a href="#"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
   <a href="#"><img src="img/categories.png" width="22px" height="22px" style="margin-bottom: -3px;"> Categorii</a>
     <a href="#"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
-     <a href="#" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
+     <a href="login.html" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
   <form class="searchForm">
   <input type="text" placeholder="Search..">
   <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
@@ -40,7 +40,7 @@
 </div>
 
        <div class="dropdown">
-  <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button>
+  <a href="user_profile.html">  <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button></a>
 </div>
 
 
@@ -49,12 +49,34 @@
 	 		<div class="secTitle">
 	 			<p>Profilul meu</p>
 	 		</div>
-	 		<div style="margin-left: 80px; background: #eee;width:160px;text-align:center;height:160px;border-radius: 20px;"><img style="" src="img/profilePic.png" width="150px" height="150px"></div>
+	 		<!--<div style="margin-left: 80px; background: #eee;width:160px;text-align:center;height:160px;border-radius: 20px;"><img style="" src="img/profilePic.png" width="150px" height="150px"></div>
 
-	 		<div style="margin-left: 80px;margin-top: 40px;font-size: 18px">Nume: Popescu</div>
+	 		<div style="margin-left: 80px;margin-top: 40px;font-size: 18px"><input value="Nume: Popescu"></div>
 	 		<div style="margin-left: 80px;margin-top: 30px;font-size: 18px">Prenume: Mihai</div>
 	 		<div style="margin-left: 80px;margin-top: 30px;font-size: 18px">Email: mihai.popescu09@gmail.com</div>
-	      
+	        -->
+           <form class="profileForm">
+                        <div class="leftFormProfile">
+                        	<label><img style="" src="img/user2.png" width="40px" height="40px"></label><br>
+                        	<div style="margin-top: 37px">Nume utilizator</div>
+                        	<div style="margin-top: 32px">Numele dvs.</div>
+                        	<div style="margin-top: 32px">Prenumele dvs.</div>
+                        	<div style="margin-top: 32px">E-mail</div>
+                        </div>
+                        <div class="rightFormProfile">
+                        <p>mihai.popescu</p><br>
+	 					<input class="inputLogin" type="text" value="mihai.popescu" placeholder="Nume Utilizator"><br>
+	 					<input class="inputLogin" type="text" value="Popescu" placeholder="Numele Dvs."><br>
+	 					<input class="inputLogin" type="text" value="Mihai" placeholder="Prenumele Dvs."><br>
+	 					<input class="inputLogin" type="text" value="mihai.popescu09@yahoo.com" placeholder="E-mail"><br>
+                        </div>
+	 					<div class="regBtn btnProfile">
+	 					<a href="user_page.html"><input class="buttonRegister" type="button" value="Modifica" ></a>
+                        </div>
+                        
+
+	 				</form>
+
 
 	 	</div>
 	</section>
