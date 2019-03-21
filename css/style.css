@@ -849,3 +849,72 @@ margin-top:-25px;
 margin-left:-10px;
 margin-right:5.5px;
 }
+
+.leftApp{
+	width:30%;
+	float:left;
+	min-height:  330px;
+	text-align: center;
+
+
+}
+.rightApp{
+	width:70%;
+	float:right;
+	min-height:  330px;
+}
+
+.leftApp img{
+	width: 70%;
+	max-width: 200px;
+	margin-top: 26px;
+
+}
+
+.rightApp li {
+	margin-top:5px;
+}
+
+.description{
+	width: 90%;
+	margin:0 auto;
+}
+
+.rightApp ul{
+	list-style-type: none;
+}
+
+.appTitle{
+	width: 100%;
+	text-align: center;
+}
+
+.downloadBtn{
+	text-align: center;
+	background: #3498DB;
+	width: 140px;
+	padding: 14px 0px;
+	border-radius: 8px;
+	border:0;
+	color:#fff;
+	font-size: 16px;
+
+
+}
+
+.downloadBtn img{
+	margin-bottom: -8px;
+	
+}
+
+.downloadForm{
+	text-align: center;
+	margin-top: 100px;
+}
+
+.downloadBtn:hover {
+	cursor: pointer;
+	background: #1a3663;
+	transition-duration: .6s;
+
+}
