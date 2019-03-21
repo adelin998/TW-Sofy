@@ -497,6 +497,41 @@
 		margin: 0 auto;
 	}
 
+	.buttonDelete2{
+		background: #FF0000;
+		cursor:pointer;
+		border: 1px #fff;
+		border-radius: 3px;
+		font-size: 14px;
+		box-sizing: border-box;
+		font-family:Gadugi;
+		padding-top:5px;
+		padding-bottom:5px;
+		padding-left:7px;
+		padding-right:7px;
+		letter-spacing:0.5px;
+		color: #fff;
+		margin: 0 auto;
+	}
+
+	.buttonAccept{
+		background: #008000;
+		cursor:pointer;
+		border: 1px #fff;
+		border-radius: 3px;
+		font-size: 14px;
+		box-sizing: border-box;
+		font-family:Gadugi;
+		padding-top:5px;
+		padding-bottom:5px;
+		padding-left:7px;
+		padding-right:7px;
+		letter-spacing:0.5px;
+		color: #fff;
+		margin-left: 7%;
+		float: left;
+	}
+
 	.buttonRegister{
 		background: #1a3663;
 		cursor:pointer;
@@ -535,9 +570,22 @@
 		transition: 0.7s;
 	}
 
+
+	.buttonDelete2:hover{
+		opacity: .80;
+		color: #8B0000;
+		transition: 0.7s;
+	}
+
 	.buttonBlock:hover{
 		opacity: .80;
 		color: #808000;
+		transition: 0.7s;
+	}
+
+	.buttonAccept:hover{
+		opacity: .80;
+		color: #006400;
 		transition: 0.7s;
 	}
 
