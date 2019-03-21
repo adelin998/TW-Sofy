@@ -139,7 +139,7 @@
 
    	.centerAdauga{
 		width:100%;
-        min-height:740px;
+        min-height:900px;
         float:left;
         color:#fff;
         border-radius: 8px;
@@ -411,7 +411,7 @@
 	}
 
 	.formAddAdauga{
-		width: 320px;
+		width: 500px;
 		background: #fff ;
 		color: #111;
 		padding:20px 20px;
@@ -831,4 +831,21 @@
 
 #item{
 	display: block;
+}
+
+textarea {
+   resize: none;
+}
+
+#fileUp{
+background:#111b2b;
+padding:5px 3px;
+border-radius:3px;
+color:#fff;
+margin-bottom:20px;
+width:70%;
+float:right;
+margin-top:-25px;
+margin-left:-10px;
+margin-right:5.5px;
 }

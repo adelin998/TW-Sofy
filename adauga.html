@@ -39,14 +39,15 @@
 
 	 				<form>
 
-	 					<h1 class="h1Form"> Formular de adaugare a unei aplicatii </h1>
-	 					<input class="inputLogin" type="text" placeholder="Upload Fisier"><br>
-	 					<input class="inputLogin" type="text" placeholder="Upload logo"><br>
+	 					<h1 class="h1Form"> Formular de adaugare a unei aplicatii </h1><br>
+
+					
+
 	 					<input class="inputLogin" type="text" placeholder="Numele Aplicatiei"><br>
 	 					<input class="inputLogin" type="text" placeholder="Tag-uri"><br>
-	 					<input class="inputLogin" type="textarea" rows="4" cols="50" placeholder="Descriere"><br>
+	 					<textarea placeholder="Descriere aplicatie" class="inputLogin" rows="4" ></textarea>
 	 					<select class="inputLogin" name="">
-	 						<option>Sistem de operare...</option>
+	 						<option value="" selected style="display:none">Sistemul de operare</option>
                         	<option value="alege">Windows 10</option>
                         	<option value="alege">Windows XP</option>
                         	<option value="alege">Windows Vista</option>
@@ -58,8 +59,11 @@
                         	<option value="alege">iOS</option>
                         	<option value="alege">Android</option>
                         </select>
+
+                      
 	 					<br>
 	 					<select class="inputLogin">
+	 						<option value="" selected style="display:none">Categoria</option>
                         	<option value="alege">Afacere</option>
                         	<option value="alege">Arta si design</option>
                         	<option value="alege">Comunicare</option>
@@ -73,10 +77,15 @@
                         </select>
 	 					<br>
 	 					<select class="inputLogin">
+	 						<option value="" selected style="display:none">Costul aplicatiei</option>
                         	<option value="alege">Aplicatie Gratuita</option>
                         	<option value="alege">Aplicatie Contra Cost</option>
                         </select>
-	 					<br>
+	 					<br><br>
+
+	 					    <div >Arhiva aplicatie: </div><input type="file" id="fileUp" name="upload" accept=".zip,.rar">
+						<div for="fileUp" style="margin-top:37px; " >Logo aplicatie: </div><input type="file" id="fileUp" name="upload" accept=".jpg,.jpeg,.gif,.tiff,.png,.bmp"><br><br>
+
 	 					<div class="regBtn">
 	 					<input class="buttonRegister" type="button" value="Adauga Aplicatie" >
                         </div>
