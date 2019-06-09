@@ -1,3 +1,10 @@
+<?php session_start(); 
+   if((!isset($_SESSION['logged'])) || $_SESSION['logged']!=true ){
+   	header("Location: login.php");
+   }
+ 
+?>
+
 <!DOCTYPE html>
      
 	 <html>
@@ -16,13 +23,14 @@
      
 	 <body>
 
+
 <!-- Bara de navigare -->
 	 <nav>
 	   <div class="topnav">
   <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
-  <a href="index.html"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
-    <a href="adauga.html"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
-     <a href="login.html" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
+  <a href="index.php"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
+    <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
+     <a href="login.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
   <form class="searchForm">
   <input type="text" placeholder="Search..">
   <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
@@ -30,6 +38,8 @@
 </div> 
 	 </nav>
 <!-- Sfarsit bara de navigare -->
+
+
 
 	 <section class="sectionAdauga" >
 	 	

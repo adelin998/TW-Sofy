@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
      
 	 <html>
@@ -109,6 +110,8 @@ Get the free app as a part of your Netflix membership and you can instantly watc
 		</button>
 		</form>
 	 	</div>
+
+
 	</section>
 	      
 	<script>

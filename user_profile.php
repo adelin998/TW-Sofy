@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
      
 	 <html>
@@ -16,13 +17,17 @@
      
 	 <body>
 
-  <!-- Bara de navigare -->
+    <!-- Bara de navigare -->
        <nav>
          <div class="topnav">
       <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
-      <a href="index.html"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
-        <a href="adauga.html"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
-      <a href="login.html" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
+    
+        <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
+           <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
+
+        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+
+
       <form class="searchForm">
       <input type="text" placeholder="Search..">
       <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
@@ -35,11 +40,11 @@
 	 	<div class="left">
 
        <div class="dropdown">
-  <a href="user_page.html"><button class="dropbtn"><img class="dropImg" src="img/grid.png" width="22px" height="22px" style="margin-bottom: -3px;">Aplicatiile mele</button></a>
+  <a href="user_page.php"><button class="dropbtn"><img class="dropImg" src="img/grid.png" width="22px" height="22px" style="margin-bottom: -3px;">Aplicatiile mele</button></a>
 </div>
 
        <div class="dropdown">
-  <a href="user_profile.html">  <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button></a>
+  <a href="user_profile.php">  <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button></a>
 </div>
 
 
