@@ -21,16 +21,14 @@
         $numeI=$_POST['nume'];
         $prenumeI=$_POST['prenume'];
         $emailI=$_POST['email'];
-
-      $sqlUp = "UPDATE users SET USERNAME='$usernameI',NUME='$numeI',PRENUME='$prenumeI',EMAIL='$emailI' where ID=4";
+        $idd=$_SESSION['idUser'];
+      $sqlUp = "UPDATE users SET USERNAME='$usernameI',NUME='$numeI',PRENUME='$prenumeI',EMAIL='$emailI' where ID='$idd'";
 
 if ($db->query($sqlUp) === TRUE) {
    $_SESSION['login_user']=$usernameI;
    header('Location: user_profile.php');
 } 
-else {
-  header("Location: fgjhkjfg.html");
-}
+
       }
 
    $db->close();
@@ -67,10 +65,7 @@ else {
         <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
 
 
-      <form class="searchForm" method="post">
-      <input type="text" name="searchValue" placeholder="Search..">
-      <button type="submit" name="searchSubmit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-    </form>
+   
     </div> 
        </nav>
   <!-- Sfarsit bara de navigare -->

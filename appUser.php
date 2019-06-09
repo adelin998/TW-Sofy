@@ -10,7 +10,17 @@
    define('DB_PASSWORD', '');
    define('DB_DATABASE', 'sofy');
    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+   $id=$_GET['id'];
+   $sql="SELECT * from apps where ID='$id'";
+   $res=mysqli_query($db,$sql);
+   $row = $res->fetch_assoc();
+   $res->free();
+   $idUp=$row['ID_UPLOADER'];
 
+   $sql1="SELECT * from users where ID='$idUp'";
+   $result=mysqli_query($db,$sql1);
+   $username=$result->fetch_assoc();
+   $db->close();
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +41,21 @@
      
 	 <body>
 
-	<!-- Bara de navigare -->
-			 <nav>
-			   <div class="topnav">
-		  <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
-		  <a href="index.php"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
-		    <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
-		  <a href="scripts/logout.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
-		  <form class="searchForm">
-		  <input type="text" placeholder="Search..">
-		  <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-		</form>
-		</div> 
-			 </nav>
- 	<!-- Sfarsit bara de navigare -->
+<!-- Bara de navigare -->
+       <nav>
+         <div class="topnav">
+      <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
+    
+        
+           <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
+
+        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+
+
+     
+    </div> 
+       </nav>
+  <!-- Sfarsit bara de navigare -->
 
 	 <section >
 	 	<div class="left">
@@ -66,28 +77,38 @@
 
 
 
-	 	<div class="center centerUser">
-	 		<h2 class="appTitle">Netflix  <?php echo $_GET['id']; ?> </h2><br>
+	 	<div class="center centerUser" style="min-height: 800px">
+	 		<h2 class="appTitle"><?php echo $row['NUME']; ?>  </h2><br>
 	 		<div class="leftApp">
-	 			<img src="img/netflix.png" >
+	 			<img src=<?php echo "logo_src/".$row['LOGO_SRC']; ?> >
 	 		</div>
        	<div class="rightApp">
        		
        			<ul>
-       				<li>Categorie : Divertisment</li>
-       				<li>Sistem de operare : Windows,Linux,Mac OS</li>
-       				<li>Cost Aplicatie : Gratis</li>
-       				<li>Taguri : #filme #familie #seriale #timpliber </li>
+       				<li>Categorie : <?php echo ucfirst($row['CATEGORIE']); ?> </li>
+       				<li>Sistem de operare : <?php echo ucfirst($row['S_O']); ?></li>
+       				<li>Cost Aplicatie : <?php if($row['COST']==0) echo "Gratis"; else echo $row['COST']; ?></li>
+       				<li>Taguri : <?php echo $row['TAGS']; ?> </li>
        				<li>Rating : 
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;" ></li>
-       				<li>Descarcari : 567</li>
-       				<li>Uploadat de : maria_margherita </li>
-       				<li>Size : 3.42 GB</li>
-       				<li>Data upload : 14/03/2018 </li>
+       				<?php 
+       				$stars=floor($row['RATING']);
+    	            $emptyStars=5-$stars;  
+    	                  ?>
+
+    	                  <?php for($i=0;$i<$stars;$i++) {?>
+	 			 <img src="img/star.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
+       				<?php }
+                    for($j=0;$j<$emptyStars;$j++)   {
+       				 ?>
+                    
+       				<img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
+                    <?php }?> </li>
+       				<li>Descarcari : <?php echo $row['NO_DOWNLOADS'] ; ?></li>
+       				<li>Uploadat de : <?php echo $username['USERNAME']; ?> </li>
+       				 <li>Size : <?php 
+                     echo $row['SIZE'].' MB'; 
+       				 ?> </li>
+       				<li>Data upload : <?php echo $row['UPLOAD_DATE']; ?> </li>
 
 
 
@@ -95,15 +116,16 @@
 
        			</ul>
        	</div>
-	 	<p class="description">Descriere : <br><br>Netflix is the world’s leading subscription service for watching TV episodes and movies on your favorite device. This Netflix mobile application delivers the best experience anywhere, anytime.
-Get the free app as a part of your Netflix membership and you can instantly watch thousands of TV episodes & movies on your mobile device. Netflix, Inc. is an American media-services provider headquartered in Los Gatos, California, founded in 1997 by Reed Hastings and Marc Randolph in Scotts Valley, California. The company's primary business is its subscription-based streaming OTT service which offers online streaming of a library of films and television programs, including those produced in-house. As of January 2019, Netflix had over 139 million paid subscriptions worldwide, including 58.49 million in the United States, and over 148 million subscriptions total including free trials. It is available almost worldwide except in mainland China, Syria, North Korea, Iran, and Crimea. The company also has offices in the Netherlands, Brazil, India, Japan, and South Korea. Netflix is a member of the Motion Picture Association of America (MPAA). </p>
+	 	<p class="description">Descriere : <br><br><?php  echo $row['DESCRIERE']; ?> </p>
 
-		<form class="downloadForm" action="index.html">
-		<button value="" class="downloadBtn" type="submit">
+		<div class="downloadForm" >
+	<a href=<?php 
+	echo "app_src/".$row['APP_SRC']; ?> ><button  class="downloadBtn" >
 			<img src="img/download.png" width="30px">
-			Download
+			Download 
 		</button>
-		</form>
+		</a>
+		</div>
 	 	</div>
 
 	</section>

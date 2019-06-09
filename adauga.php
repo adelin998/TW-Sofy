@@ -3,6 +3,8 @@
    	header("Location: login.php");
    }
 
+   $varErrors=0;
+
    if(isset($_POST['addSub'])){
 
    define('DB_SERVER', 'localhost');
@@ -18,7 +20,7 @@
    $categorie=$_POST['categorie'];
    $cost=$_POST['cost'];
    $dt=date("Y-m-d");
-   $size=$_FILES["fileArhiva"]["size"];
+   $size=round(($_FILES["fileArhiva"]["size"])/1024000);
    $arhiva= basename($_FILES["fileArhiva"]["name"]);
    $logo= basename($_FILES["fileLogo"]["name"]);
    $id=$_SESSION["idUser"];
@@ -26,18 +28,98 @@
 
 $sql = "INSERT INTO apps (NUME,ID_UPLOADER,CATEGORIE,S_O,TAGS,DESCRIERE,COST,UPLOAD_DATE,RATING,NO_DOWNLOADS,SIZE,ACCEPT_TAG,APP_SRC,LOGO_SRC)
 VALUES ('$nume','$id','$categorie','$so','$tags','$descriere','$cost','$dt',0,0,'$size',0,'$arhiva','$logo')";
-
+$ok=0;
 if ($db->query($sql) === TRUE) {
-    header('Location: user_page.php');
+
+  $ok=1;
 } 
 
 else {
-    echo "eroare sql";
+    $ok=0;
+}
+
+if($ok==1){
+
+	//upload logo
+	$target_dir = "logo_src/";
+$target_file = $target_dir . basename($_FILES["fileLogo"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+
+    $check = getimagesize($_FILES["fileLogo"]["tmp_name"]);
+    if($check !== false) {
+       // echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+       // echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+// Check if file already exists
+if (file_exists($target_file)) {
+   // echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    //echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} 
+else {
+    if (move_uploaded_file($_FILES["fileLogo"]["tmp_name"], $target_file)) {
+       // echo "The file ". basename( $_FILES["fileLogo"]["name"]). " has been uploaded.";
+
+    } else {
+       // echo "Sorry, there was an error uploading your file.";
+    }
+}
+
+//upload src
+if($uploadOk!=0){
+$target_dir = "app_src/";
+$target_file = $target_dir . basename($_FILES["fileArhiva"]["name"]);
+$uploadOk1 = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if file already exists
+if (file_exists($target_file)) {
+   // echo "Sorry, file already exists.";
+    $uploadOk1 = 0;
+}
+
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk1 == 0) {
+  //  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} 
+else {
+    if (move_uploaded_file($_FILES["fileArhiva"]["tmp_name"], $target_file)) {
+       // echo "The file ". basename( $_FILES["fileArhiva"]["name"]). " has been uploaded.";
+    } else {
+       // echo "Sorry, there was an error uploading your file.";
+    }
+}
+
+
+}
+
 }
 
    
  $db->close();
-      }
+ if($ok!=0 && $uploadOk!=0 && $uploadOk1!=0){
+ 	$varErrors=0;
+	header('Location: user_page.php');
+ }
+
+ else 
+ 	$varErrors=1;
+     
+     }
    
 
 
@@ -74,10 +156,7 @@ else {
         <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
 
 
-      <form class="searchForm" method="post">
-      <input type="text" name="searchValue" placeholder="Search..">
-      <button type="submit" name="searchSubmit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-    </form>
+     
     </div> 
        </nav>
   <!-- Sfarsit bara de navigare -->
@@ -138,14 +217,26 @@ else {
 	 					<div class="regBtn">
 	 					<input class="buttonRegister" type="submit" name="addSub" value="Adauga Aplicatie" >
                         </div>
-                       
+ 
 	 				</form>
-
+                     
 
 	 			</div>
+	 			 <br><br>
 	 	</div>
 	</section>
-	
+	   <?php if($varErrors==1) { ?>
+                       	 <div style='margin-top:100px;text-align:center;width:40%;height:200px;background:#111b2b;position: fixed;margin-left: 30%;margin-right: 30%;'> <br><br><h3 style='color:red;'>Uploading failed ! </h3>
+                       	 <a href="adauga.php"><button>OK</button></a></div>
+                       	 <style type="text/css">
+                       	 	section{
+                       	 		opacity: .2;
+                       	 	}
+                       	 </style>
+                       
+                       <?php } 
+
+                       ?>
 
 	
 

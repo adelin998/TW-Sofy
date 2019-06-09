@@ -243,6 +243,7 @@
 	.item img{
 		width:auto;
 		height: 100px;
+		max-width: 120px;
 	}
 
 	.imgAdministrator{
