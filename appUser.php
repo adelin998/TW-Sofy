@@ -45,11 +45,11 @@
        <nav>
          <div class="topnav">
       <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
-    
+        <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
         
            <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
 
-        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;" src=<?php echo 'img_users/'.$_SESSION['img'].'.png'; ?>> <?php echo $_SESSION['login_user']; ?></a>
 
 
      
@@ -80,7 +80,7 @@
 	 	<div class="center centerUser" style="min-height: 800px">
 	 		<h2 class="appTitle"><?php echo $row['NUME']; ?>  </h2><br>
 	 		<div class="leftApp">
-	 			<img src=<?php echo "logo_src/".$row['LOGO_SRC']; ?> >
+	 			<img onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['LOGO_SRC']; ?> >
 	 		</div>
        	<div class="rightApp">
        		

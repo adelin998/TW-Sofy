@@ -27,6 +27,7 @@
          $res=mysqli_query($db,$sql);
          $id=$res->fetch_assoc();
          $_SESSION['idUser']=(int)($id['ID']);
+         $_SESSION['img']=rand(1,5);
          
         echo 1;
       }

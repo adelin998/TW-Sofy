@@ -62,7 +62,7 @@ if ($db->query($sqlUp) === TRUE) {
         <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
            <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
 
-        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;" src=<?php echo 'img_users/'.$_SESSION['img'].'.png'; ?>> <?php echo $_SESSION['login_user']; ?></a>
 
 
    
@@ -95,7 +95,7 @@ if ($db->query($sqlUp) === TRUE) {
 	        -->
            <form class="profileForm" method="post" action="#">
                         <div class="leftFormProfile">
-                        	<label><img style="" src="img/user2.png" width="40px" height="40px"></label><br>
+                        	<label ><img style="border-radius:50%"  width="40px" height="40px" src=<?php echo 'img_users/'.$_SESSION['img'].'.png'; ?>></label><br>
                         	<div style="margin-top: 37px">Nume utilizator</div>
                         	<div style="margin-top: 32px">Numele dvs.</div>
                         	<div style="margin-top: 32px">Prenumele dvs.</div>

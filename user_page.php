@@ -63,7 +63,7 @@ if ($db->query($sql) === TRUE) {
 		    <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
            <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
 
-		    <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+		    <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;" src=<?php echo 'img_users/'.$_SESSION['img'].'.png'; ?>> <?php echo $_SESSION['login_user']; ?></a>
 
   <form class="searchForm" method="post">
       <input type="text" name="searchValue" placeholder="Search..">
@@ -197,7 +197,8 @@ else {
 	 			<a href=<?php echo "appUser.php?id=".$row["ID"]; ?>>
 	 				<div class="itemContent">
 	 					<br>
-	 			<img src=<?php echo "logo_src/".$row['LOGO_SRC']; ?> />
+
+	 			<img  onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['LOGO_SRC']; ?>  />
                  <p class="itemTitle"> <?php echo $row['NUME'];?> </p>
 	 			 <?php for($i=0;$i<$stars;$i++) {?>
 	 			 <img src="img/star.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
@@ -207,6 +208,7 @@ else {
                     
        				<img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
                     <?php }?>
+                    
        				<br>
                  <p><b> <?php echo ucfirst($row['CATEGORIE']); ?></b></p>
 	 			<p><i> <?php 
@@ -219,7 +221,7 @@ else {
 	 			<p><i> <?php echo ucfirst($row['NO_DOWNLOADS']); ?> descarcari</i></p>
 	 		    </div></a>
 
-	 		    <button class="editBtn">Editeaza</button>
+	 		    <a href=<?php echo "editare.php?id=".$row['ID'] ?> ><button class="editBtn">Editeaza</button></a>
 
                 <form method="post">
                 	<input type="number" name="idValue" style="display: none" value=<?php echo $row['ID']; ?>>

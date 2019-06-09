@@ -21,7 +21,7 @@
    $cost=$_POST['cost'];
    $dt=date("Y-m-d");
    $size=round(($_FILES["fileArhiva"]["size"])/1024000);
-   $arhiva= basename($_FILES["fileArhiva"]["name"]);
+   $arhiva= strtolower(str_replace(' ', '-', basename($_FILES["fileArhiva"]["name"]) ));
    $logo= basename($_FILES["fileLogo"]["name"]);
    $id=$_SESSION["idUser"];
 
@@ -80,7 +80,7 @@ else {
 //upload src
 if($uploadOk!=0){
 $target_dir = "app_src/";
-$target_file = $target_dir . basename($_FILES["fileArhiva"]["name"]);
+$target_file = $target_dir . strtolower(str_replace(' ', '-', basename($_FILES["fileArhiva"]["name"]) ));
 $uploadOk1 = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -150,10 +150,10 @@ else {
          <div class="topnav">
       <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
     
-        
+        <a href="user_page.php"><img src="img/grid.png" width="22px" height="22px" style="margin-bottom: -3px;"> Aplicatiile Mele</a>
            <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
 
-        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img  width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;" src=<?php echo 'img_users/'.$_SESSION['img'].'.png'; ?> > <?php echo $_SESSION['login_user']; ?></a>
 
 
      
