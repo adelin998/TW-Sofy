@@ -847,7 +847,8 @@ textarea {
    resize: none;
 }
 
-#fileUp{
+
+#fileArhiva,#fileLogo{
 background:#111b2b;
 padding:5px 3px;
 border-radius:3px;

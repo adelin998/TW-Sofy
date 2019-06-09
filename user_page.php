@@ -65,11 +65,11 @@ if ($db->query($sql) === TRUE) {
 
 		    <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
 
+  <form class="searchForm" method="post">
+      <input type="text" name="searchValue" placeholder="Search..">
+      <button type="submit" name="searchSubmit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
+    </form>
 
-		  <form class="searchForm">
-		  <input type="text" placeholder="Search..">
-		  <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-		</form>
 		</div> 
 			 </nav>
  	<!-- Sfarsit bara de navigare -->
@@ -99,6 +99,38 @@ if ($db->query($sql) === TRUE) {
 
     <?php
 
+
+if(isset($_POST['searchSubmit'])){
+$value=trim($_POST['searchValue']);
+if(isset($_POST['orderSubmit'])){
+    if($_POST['order']=='0'){
+    	 $sql = "SELECT * from apps where NUME like '%$value%'  order by RATING desc";
+    }
+
+    else if($_POST['order']=='1'){
+     $sql = "SELECT * from apps order by UPLOAD_DATE desc";
+    }
+   
+  else if($_POST['order']=='2'){
+     $sql = "SELECT * from apps order by NO_DOWNLOADS desc";
+    }
+
+   else if($_POST['order']=='3'){
+     $sql = "SELECT * from apps order by COST asc";
+    }
+
+   else{
+   	 $sql = "SELECT * from apps order by COST desc";
+   }
+}
+
+  else{
+   $sql = "SELECT * from apps where NUME like '%$value%' order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
+    }
+}
+
+else {
+
    if(isset($_POST['orderSubmit'])){
     if($_POST['order']=='0'){
     	 $sql = "SELECT * from apps order by RATING desc";
@@ -120,9 +152,14 @@ if ($db->query($sql) === TRUE) {
    	 $sql = "SELECT * from apps order by COST desc";
    }
 }
+
   else{
    $sql = "SELECT * from apps order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
     }
+
+}
+
+
    $result = $db->query($sql);
 
    if ($result->num_rows > 0) {

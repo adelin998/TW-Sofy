@@ -1,4 +1,43 @@
-<?php session_start();?>
+<?php session_start();
+
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', 'root');
+   define('DB_PASSWORD', '');
+   define('DB_DATABASE', 'sofy');
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+      
+      $sql = "SELECT * FROM users WHERE ID=".$_SESSION['idUser'];
+      $res=mysqli_query($db,$sql);
+      $row=$res->fetch_assoc();
+      $res->free();
+
+      $username=$row['USERNAME'];
+      $nume=$row['NUME'];
+      $prenume=$row['PRENUME'];
+      $email=$row['EMAIL'];
+
+      if(isset($_POST['submit'])){
+        $usernameI=$_POST['username'];
+        $numeI=$_POST['nume'];
+        $prenumeI=$_POST['prenume'];
+        $emailI=$_POST['email'];
+
+      $sqlUp = "UPDATE users SET USERNAME='$usernameI',NUME='$numeI',PRENUME='$prenumeI',EMAIL='$emailI' where ID=4";
+
+if ($db->query($sqlUp) === TRUE) {
+   $_SESSION['login_user']=$usernameI;
+   header('Location: user_profile.php');
+} 
+else {
+  header("Location: fgjhkjfg.html");
+}
+      }
+
+   $db->close();
+?>
+
+
+
 <!DOCTYPE html>
      
 	 <html>
@@ -28,9 +67,9 @@
         <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
 
 
-      <form class="searchForm">
-      <input type="text" placeholder="Search..">
-      <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
+      <form class="searchForm" method="post">
+      <input type="text" name="searchValue" placeholder="Search..">
+      <button type="submit" name="searchSubmit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
     </form>
     </div> 
        </nav>
@@ -59,7 +98,7 @@
 	 		<div style="margin-left: 80px;margin-top: 30px;font-size: 18px">Prenume: Mihai</div>
 	 		<div style="margin-left: 80px;margin-top: 30px;font-size: 18px">Email: mihai.popescu09@gmail.com</div>
 	        -->
-           <form class="profileForm">
+           <form class="profileForm" method="post" action="#">
                         <div class="leftFormProfile">
                         	<label><img style="" src="img/user2.png" width="40px" height="40px"></label><br>
                         	<div style="margin-top: 37px">Nume utilizator</div>
@@ -68,14 +107,15 @@
                         	<div style="margin-top: 32px">E-mail</div>
                         </div>
                         <div class="rightFormProfile">
-                        <p>mihai.popescu</p><br>
-	 					<input class="inputLogin" type="text" value="mihai.popescu" placeholder="Nume Utilizator"><br>
-	 					<input class="inputLogin" type="text" value="Popescu" placeholder="Numele Dvs."><br>
-	 					<input class="inputLogin" type="text" value="Mihai" placeholder="Prenumele Dvs."><br>
-	 					<input class="inputLogin" type="text" value="mihai.popescu09@yahoo.com" placeholder="E-mail"><br>
+                        <p><?php echo $username; ?></p><br>
+	 					<input class="inputLogin" type="text"  name="username" placeholder="Nume Utilizator" value=<?php echo $username; ?>><br>
+	 					<input class="inputLogin" type="text" name="nume" placeholder="Numele Dvs." value=<?php echo ucfirst($nume);?> ><br>
+	 					<input class="inputLogin" type="text" name="prenume" placeholder="Prenumele Dvs." value=<?php echo ucfirst($prenume);?>><br>
+	 					<input class="inputLogin" type="text" name="email" placeholder="E-mail" value=<?php echo $email;?>><br>
                         </div>
 	 					<div class="regBtn btnProfile">
-	 					<a href="user_page.html"><input class="buttonRegister" type="button" value="Modifica" ></a>
+
+	 					<input class="buttonRegister" type="submit" name="submit" value="Modifica" >
                         </div>
                         
 

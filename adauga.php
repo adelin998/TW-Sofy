@@ -2,6 +2,45 @@
    if((!isset($_SESSION['logged'])) || $_SESSION['logged']!=true ){
    	header("Location: login.php");
    }
+
+   if(isset($_POST['addSub'])){
+
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', 'root');
+   define('DB_PASSWORD', '');
+   define('DB_DATABASE', 'sofy');
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+   
+   $nume=trim($_POST['nume']);
+   $tags=trim($_POST['tags']);
+   $descriere=$_POST['descriere'];
+   $so=$_POST['so'];
+   $categorie=$_POST['categorie'];
+   $cost=$_POST['cost'];
+   $dt=date("Y-m-d");
+   $size=$_FILES["fileArhiva"]["size"];
+   $arhiva= basename($_FILES["fileArhiva"]["name"]);
+   $logo= basename($_FILES["fileLogo"]["name"]);
+   $id=$_SESSION["idUser"];
+
+
+$sql = "INSERT INTO apps (NUME,ID_UPLOADER,CATEGORIE,S_O,TAGS,DESCRIERE,COST,UPLOAD_DATE,RATING,NO_DOWNLOADS,SIZE,ACCEPT_TAG,APP_SRC,LOGO_SRC)
+VALUES ('$nume','$id','$categorie','$so','$tags','$descriere','$cost','$dt',0,0,'$size',0,'$arhiva','$logo')";
+
+if ($db->query($sql) === TRUE) {
+    header('Location: user_page.php');
+} 
+
+else {
+    echo "eroare sql";
+}
+
+   
+ $db->close();
+      }
+   
+
+
  
 ?>
 
@@ -25,19 +64,23 @@
 
 
 <!-- Bara de navigare -->
-	 <nav>
-	   <div class="topnav">
-  <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
-  <a href="index.php"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
-    <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
-     <a href="login.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
-  <form class="searchForm">
-  <input type="text" placeholder="Search..">
-  <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-</form>
-</div> 
-	 </nav>
-<!-- Sfarsit bara de navigare -->
+       <nav>
+         <div class="topnav">
+      <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
+    
+        
+           <a href="scripts/logout.php" style="border-radius:5px;padding-top: 4px;height:13px;float: right;margin-right: 30px;margin-top: 7px;background: #e8353b;"><img src="img/logout.png" width="22px" height="22px" style="margin-bottom: -5px;"> Log out</a>
+
+        <a href="user_profile.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img_users/1.png" width="22px" height="22px" style="margin-bottom: -5px;border-radius:50%;"> <?php echo $_SESSION['login_user']; ?></a>
+
+
+      <form class="searchForm" method="post">
+      <input type="text" name="searchValue" placeholder="Search..">
+      <button type="submit" name="searchSubmit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
+    </form>
+    </div> 
+       </nav>
+  <!-- Sfarsit bara de navigare -->
 
 
 
@@ -47,59 +90,58 @@
 
 	 			<div class="formAddAdauga">
 
-	 				<form>
+	 				<form method="post" enctype="multipart/form-data">
 
 	 					<h1 class="h1Form"> Formular de adaugare a unei aplicatii </h1><br>
 
 					
 
-	 					<input class="inputLogin" type="text" placeholder="Numele Aplicatiei"><br>
-	 					<input class="inputLogin" type="text" placeholder="Tag-uri"><br>
-	 					<textarea placeholder="Descriere aplicatie" class="inputLogin" rows="4" ></textarea>
-	 					<select class="inputLogin" name="">
+	 					<input class="inputLogin" type="text" placeholder="Numele aplicatiei" name="nume" required><br>
+	 					<input class="inputLogin" type="text" placeholder="Tag-uri" name="tags" required><br>
+	 					<textarea type="text" placeholder="Descriere aplicatie" class="inputLogin" rows="4" name="descriere" required ></textarea>
+	 					<select class="inputLogin" name="so" required>
 	 						<option value="" selected style="display:none">Sistemul de operare</option>
-                        	<option value="alege">Windows 10</option>
-                        	<option value="alege">Windows XP</option>
-                        	<option value="alege">Windows Vista</option>
-                        	<option value="alege">Widnows 7</option>
-                        	<option value="alege">Windows 8</option>
-                        	<option value="alege">Windows NT</option>
-                        	<option value="alege">Linux</option>
-                        	<option value="alege">Mac OS</option>
-                        	<option value="alege">iOS</option>
-                        	<option value="alege">Android</option>
+                        	<option value="Windows 10">Windows 10</option>
+                        	<option value="Windows XP">Windows XP</option>
+                        	<option value="Windows Vista">Windows Vista</option>
+                        	<option value="Widnows 7">Widnows 7</option>
+                        	<option value="Windows 8">Windows 8</option>
+                        	<option value="Windows NT">Windows NT</option>
+                        	<option value="Linux">Linux</option>
+                        	<option value="Mac OS">Mac OS</option>
+                        	<option value="iOS">iOS</option>
+                        	<option value="Android">Android</option>
                         </select>
 
                       
 	 					<br>
-	 					<select class="inputLogin">
+	 					<select class="inputLogin" name="categorie" required>
 	 						<option value="" selected style="display:none">Categoria</option>
-                        	<option value="alege">Afacere</option>
-                        	<option value="alege">Arta si design</option>
-                        	<option value="alege">Comunicare</option>
-                        	<option value="alege">Cumparaturi</option>
-                        	<option value="alege">Divertisment</option>
-                        	<option value="alege">Domeniu Medical</option>
-                        	<option value="alege">Educatie</option>
-                        	<option value="alege">Familie</option>
-                        	<option value="alege">Jocuri</option>
-                        	<option value="alege">Altele</option>
+                        	<option value="Afacere">Afacere</option>
+                        	<option value="Arta si design">Arta si design</option>
+                        	<option value="Comunicare">Comunicare</option>
+                        	<option value="Cumparaturi">Cumparaturi</option>
+                        	<option value="Divertisment">Divertisment</option>
+                        	<option value="Domeniu Medical">Domeniu Medical</option>
+                        	<option value="Educatie">Educatie</option>
+                        	<option value="Familie">Familie</option>
+                        	<option value="Jocuri">Jocuri</option>
+                        	<option value="Altele">Altele</option>
                         </select>
 	 					<br>
-	 					<select class="inputLogin">
-	 						<option value="" selected style="display:none">Costul aplicatiei</option>
-                        	<option value="alege">Aplicatie Gratuita</option>
-                        	<option value="alege">Aplicatie Contra Cost</option>
-                        </select>
+	 					<input class="inputLogin" name="cost" placeholder="Pretul aplicatiei" type="number" min="0" max="100" required>
 	 					<br><br>
 
-	 					    <div >Arhiva aplicatie: </div><input type="file" id="fileUp" name="upload" accept=".zip,.rar">
-						<div for="fileUp" style="margin-top:37px; " >Logo aplicatie: </div><input type="file" id="fileUp" name="upload" accept=".jpg,.jpeg,.gif,.tiff,.png,.bmp"><br><br>
+	 					    <div >Arhiva aplicatie: </div><input type="file" id="fileArhiva" name="fileArhiva" accept=".zip,.rar" required>
+						<div for="fileUp" style="margin-top:37px;" >Logo aplicatie: </div><input type="file" id="fileLogo" name="fileLogo" accept=".jpg,.jpeg,.gif,.tiff,.png,.bmp" required><br><br>
 
 	 					<div class="regBtn">
-	 					<input class="buttonRegister" type="button" value="Adauga Aplicatie" >
+	 					<input class="buttonRegister" type="submit" name="addSub" value="Adauga Aplicatie" >
                         </div>
+                       
 	 				</form>
+
+
 	 			</div>
 	 	</div>
 	</section>
