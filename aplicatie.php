@@ -18,6 +18,7 @@
     $size=$row['SIZE'];
     $tags=$row['TAGS'];
     $cost=$row['COST'];
+    $src_app=$row['APP_SRC'];
     $data_upload=$row['UPLOAD_DATE'];
     $downloads=$row['NO_DOWNLOADS'];
     $uploader_ID=$row['ID_UPLOADER'];
@@ -67,7 +68,7 @@
       <section>
        <div class="left">
          <div class="dropdown">
-           <button onclick="history.go(-1);">Back </button>
+           <button class="back_button" onclick="history.go(-1);">Back </button>
          </div>
        </div>
 
@@ -99,10 +100,12 @@
      </div>
       <p class="description">Descriere : <br><br> <?php echo $descriere ?>  </p>
       <form class="downloadForm" action="index.html">
-        <button value="" class="downloadBtn" type="submit">
+        <a class="downloadBtn" href=<?php echo "app_src/".$src_app; ?> download>
+       <!-- <button value="" class="downloadBtn" type="submit"> -->
          <img src="img/download.png" width="30px">
          Download
-       </button>
+       </a>
+      <!-- </button>-->
       </form>
     </div>
   </section>

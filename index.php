@@ -50,7 +50,6 @@ define('DB_SERVER', 'localhost');
 
 	 <section >
 	 	<div class="left">
-
       <form method="post">
 	 				<select name="category">
 	 					<option value="0"> Afacere</option>
@@ -62,28 +61,22 @@ define('DB_SERVER', 'localhost');
 	 					<option value="6"> Educatie</option>
 	 					<option value="7"> Familie</option>
 	 					<option value="8"> Jocuri</option>
-	 					<option value="9"> Domeniul medical</option>
-	 				</select>
-	 </form>
+	 					<option value="9"> Altele</option>
+	 				</select><br>
 
-
-
-	<form method="post">
 	 				<select name="so">
 	 					<option value="0"> Windows</option>
 	 					<option value="1"> Linux</option>
 	 					<option value="2"> Mac OS</option>
-	 				</select>
-	</form>
+	 				</select><br>
 
-	<form method="post">
 	 				<select name="price">
 	 					<option value="0"> Gratis</option>
 	 					<option value="1"> Cu plata</option>
-	 				</select>
-	</form>
+	 				</select><br>
 
-	<button type="submit" name="categorySubmit">Ordoneaza</button>
+	       <button type="submit" name="categorySubmit">Ordoneaza</button>
+       </form>
 	 	</div>
 	 	<div class="center">
 
@@ -144,13 +137,197 @@ else {
 }
 
   else if(isset($_POST['categorySubmit'])){
-      if($_POST['category']=='0'){
-      if($_POST['so']=='0'){
-        if($_POST['price']=='0'){
-         $sql = "SELECT * from apps where NUME like '%p%' order by RATING desc";
-        }
+      if($_POST['category']=='0' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Afacere' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='0' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Afacere' and S_O like '%Windows%' and COST is not null";
       }
-    }
+      else if($_POST['category']=='0' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Afacere' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='0' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Afacere' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='0' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Afacere' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='0' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Afacere' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='1' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Arta si design' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='1' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Arta si design' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='1' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Arta si design' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='1' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Arta si design' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='1' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Arta si design' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='1' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Arta si design' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='2' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Comunicare' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='2' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Comunicare' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='2' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Comunicare' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='2' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Comunicare' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='2' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Comunicare' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='2' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Comunicare' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='3' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Cumparaturi' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='3' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Cumparaturi' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='3' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Cumparaturi' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='3' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Cumparaturi' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='3' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Cumparaturi' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='3' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Cumparaturi' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='4' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Divertisment' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='4' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Divertisment' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='4' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Divertisment' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='4' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Divertisment' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='4' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Divertisment' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='4' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Divertisment' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='5' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Domeniul medical' and S_O like '%Windows%' and COST is null";
+      }
+      else if($_POST['category']=='5' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Domeniul medical' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='5' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Domeniul medical' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='5' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Domeniul medical' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='5' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Domeniul medical' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='5' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Domeniul medical' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='6' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Educatie' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='6' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Educatie' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='6' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Educatie' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='6' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Educatie' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='6' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Educatie' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='6' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Educatie' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='7' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Familie' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='7' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Familie' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='7' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Familie' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='7' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Familie' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='7' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Familie' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='7' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Familie' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='8' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Jocuri' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='8' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Jocuri' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='8' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Jocuri' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='8' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Jocuri' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='8' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Jocuri' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='8' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Jocuri' and S_O like '%Mac%' and COST is not null";
+      }
+
+      else if($_POST['category']=='9' && $_POST['so']=='0' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Altele' and S_O like '%Windows%' and COST is null";
+       }
+      else if($_POST['category']=='9' && $_POST['so']=='0' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Altele' and S_O like '%Windows%' and COST is not null";
+      }
+      else if($_POST['category']=='9' && $_POST['so']=='1' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Altele' and S_O like 'Linux' and COST is null";
+      }
+      else if($_POST['category']=='9' && $_POST['so']=='1' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Altele' and S_O like 'Linux' and COST is not null";
+      }
+      else if($_POST['category']=='9' && $_POST['so']=='2' && $_POST['price']=='0'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Altele' and S_O like '%Mac%' and COST is null";
+      }
+      else if($_POST['category']=='9' && $_POST['so']=='2' && $_POST['price']=='1'){
+         $sql = "SELECT * from apps where CATEGORIE like 'Altele' and S_O like '%Mac%' and COST is not null";
+      }
+
+
   }
 
   else{
