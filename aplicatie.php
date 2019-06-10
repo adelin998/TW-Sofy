@@ -1,137 +1,130 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-     
-	 <html>
-     
-	 <head>
-     
-	 <meta charset="utf-8"/>
-	 
-	 <title>Online Software Repository</title>
-     
-	 <link rel="stylesheet" type="text/css" href="css/style.css"/> 
-	 
-	 <link rel='icon' href="img/fav.png">
-     
-	 </head>
-     
-	 <body>
+    <?php 
+    define('DB_SERVER', 'localhost');
+    define('DB_USERNAME', 'root');
+    define('DB_PASSWORD', '');
+    define('DB_DATABASE', 'sofy');
 
-<!-- Bara de navigare -->
-	 <nav>
-	   <div class="topnav">
-  <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
-  <a href="index.html"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
-    <a href="adauga.html"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
-     <a href="login.html" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
-  <form class="searchForm">
-  <input type="text" placeholder="Search..">
-  <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-</form>
-</div> 
-	 </nav>
-<!-- Sfarsit bara de navigare -->
+    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
-	 <section >
-	 	<div class="left">
-	
-       <div class="dropdown">
-  <button onclick="myFunction('myDropdown1')" class="dropbtn"><img class="dropImg" src="img/down.png" width="22px" height="22px" style="margin-bottom: -3px;">Categorii</button>
-  <div id="myDropdown1" class="dropdown-content ">
-    <a href="#home"><img src="img/business.png" width="16px" height="16px" style="margin-bottom: -3px;"> Afacere</a>
-    <a href="#about"><img src="img/art.png" width="16px" height="16px" style="margin-bottom: -3px;"> Arta si design</a>
-    <a href="#"><img src="img/communication.png" width="16px" height="16px" style="margin-bottom: -3px;"> Comunicare</a>
-     <a href="#"><img src="img/shop.png" width="16px" height="16px" style="margin-bottom: -3px;"> Cumparaturi</a>
-	 <a href="#"><img src="img/mask.png" width="16px" height="16px" style="margin-bottom: -3px;"> Divertisment</a>
-	 <a href="#"><img src="img/medical.png" width="16px" height="16px" style="margin-bottom: -3px;"> Domeniul medical</a>
-	 <a href="#"><img src="img/education.png" width="16px" height="16px" style="margin-bottom: -3px;"> Educatie</a>
-	 <a href="#"><img src="img/family.png" width="16px" height="16px" style="margin-bottom: -3px;"> Familie</a>
-	 <a href="#"><img src="img/games.png" width="16px" height="16px" style="margin-bottom: -3px;"> Jocuri</a>
+    $idApp=$_GET['id'];
+    $sql = "SELECT * FROM apps WHERE ID=".$idApp;
+    $res=mysqli_query($db,$sql);
+    $row=$res->fetch_assoc();
+    $res->free();
+    $nume=$row['NUME'];
+    $categorie=$row['CATEGORIE'];
+    $so=$row['S_O'];
+    $descriere=$row['DESCRIERE'];
+    $size=$row['SIZE'];
+    $tags=$row['TAGS'];
+    $cost=$row['COST'];
+    $data_upload=$row['UPLOAD_DATE'];
+    $downloads=$row['NO_DOWNLOADS'];
+    $uploader_ID=$row['ID_UPLOADER'];
+    $stars=floor($row['RATING']);
+    $logo=$row['LOGO_SRC'];
+    $emptyStars=5-$stars;
+    $sql = "SELECT * FROM users WHERE ID=".$uploader_ID;
+    $res=mysqli_query($db,$sql);
+    $row=$res->fetch_assoc();
+    $res->free();
+    $uploader=$row['USERNAME'];
 
-  </div>
-</div>
+    ?>
+    <!DOCTYPE html>
 
-       <div class="dropdown">
-  <button onclick="myFunction('myDropdown2')" class="dropbtn"><img class="dropImg" src="img/down.png" width="22px" height="22px" style="margin-bottom: -3px;">Sistem de operare</button>
-  <div id="myDropdown2" class="dropdown-content">
-    <a href="#home"><img src="img/windows.png" width="16px" height="16px" style="margin-bottom: -3px;"> Windows</a>
-    <a href="#about"><img src="img/linux.png" width="16px" height="16px" style="margin-bottom: -3px;"> Linux</a>
-     <a href="#"><img src="img/apple.png" width="16px" height="16px" style="margin-bottom: -3px;"> Mac OS</a>
+    <html>
 
-  </div>
-</div>
+    <head>
 
-       <div class="dropdown">
-  <button onclick="myFunction('myDropdown3')" class="dropbtn"><img class="dropImg" src="img/down.png" width="22px" height="22px" style="margin-bottom: -3px;">Pret</button>
-  <div id="myDropdown3" class="dropdown-content">
-    <a href="#home"><img src="img/money1.png" width="16px" height="16px" style="margin-bottom: -3px;"> Gratis</a>
-    <a href="#about"><img src="img/money2.png" width="16px" height="16px" style="margin-bottom: -3px;"> Cu plata</a>
+      <meta charset="utf-8"/>
 
-  </div>
-</div>
+      <title>Online Software Repository</title>
 
-	 	</div>
-	 	<div class="center">	
-	 		<h2 class="appTitle">Netflix</h2><br>
-	 		<div class="leftApp">
-	 			<img src="img/netflix.png" >
-	 		</div>
-       	<div class="rightApp">
-       		
-       			<ul>
-       				<li>Categorie : Divertisment</li>
-       				<li>Sistem de operare : Windows,Linux,Mac OS</li>
-       				<li>Cost Aplicatie : Gratis</li>
-       				<li>Taguri : #filme #familie #seriale #timpliber </li>
-       				<li>Rating : 
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/star.png" width="20px" style="margin-bottom: -5px;" >
-       				<img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;" ></li>
-       				<li>Descarcari : 567</li>
-       				<li>Uploadat de : maria_margherita </li>
-       				<li>Size : 3.42 GB</li>
-       				<li>Data upload : 14/03/2018 </li>
+      <link rel="stylesheet" type="text/css" href="css/style.css"/> 
 
+      <link rel='icon' href="img/fav.png">
 
+    </head>
 
+    <body>
 
+      <!-- Bara de navigare -->
+      <nav>
+        <div class="topnav">
+          <p class="menuTitle"><img src="img/fav.png" width="28px" height="28px" style="margin-bottom: -6px;">  Online Software Repository</p>
+          <a href="index.php"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
+          <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
+          <a href="login.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
+          <form class="searchForm">
+            <input type="text" placeholder="Search..">
+            <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
+          </form>
+        </div> 
+      </nav>
+      <!-- Sfarsit bara de navigare -->
 
-       			</ul>
-       	</div>
-	 	<p class="description">Descriere : <br><br>Netflix is the world’s leading subscription service for watching TV episodes and movies on your favorite device. This Netflix mobile application delivers the best experience anywhere, anytime.
-Get the free app as a part of your Netflix membership and you can instantly watch thousands of TV episodes & movies on your mobile device. Netflix, Inc. is an American media-services provider headquartered in Los Gatos, California, founded in 1997 by Reed Hastings and Marc Randolph in Scotts Valley, California. The company's primary business is its subscription-based streaming OTT service which offers online streaming of a library of films and television programs, including those produced in-house. As of January 2019, Netflix had over 139 million paid subscriptions worldwide, including 58.49 million in the United States, and over 148 million subscriptions total including free trials. It is available almost worldwide except in mainland China, Syria, North Korea, Iran, and Crimea. The company also has offices in the Netherlands, Brazil, India, Japan, and South Korea. Netflix is a member of the Motion Picture Association of America (MPAA). </p>
+      <section>
+       <div class="left">
+         <div class="dropdown">
+           <button onclick="history.go(-1);">Back </button>
+         </div>
+       </div>
 
-		<form class="downloadForm" action="index.html">
-		<button value="" class="downloadBtn" type="submit">
-			<img src="img/download.png" width="30px">
-			Download
-		</button>
-		</form>
-	 	</div>
+       <div class="center">	
+        <h2 class="appTitle"><?php echo $nume ?></h2><br>
+        <div class="leftApp">
+        <!-- <img src="img/netflix.png" > -->
+         <img  onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$logo; ?>  />
+       </div>
+       <div class="rightApp">
+        <ul>
+         <li>Categorie : <?php echo $categorie ?> </li>
+         <li>Sistem de operare : <?php echo $so ?> </li>
+         <li>Cost Aplicatie : <?php echo $cost ?> </li>
+         <li>Taguri : <?php echo $tags ?> </li>
+         <li>Rating : <?php for($i=0;$i<$stars;$i++) {?>
+           <img src="img/star.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
+         <?php }
+         for($j=0;$j<$emptyStars;$j++)   {
+           ?>
+           <img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
+         <?php }?>
+         <br>
+         <li>Descarcari : <?php echo $downloads ?> </li>
+         <li>Uploadat de : <?php echo $uploader ?> </li>
+         <li>Size : <?php echo $size ?> </li>
+         <li>Data upload : <?php echo $data_upload ?> </li>
+       </ul>
+     </div>
+      <p class="description">Descriere : <br><br> <?php echo $descriere ?>  </p>
+      <form class="downloadForm" action="index.html">
+        <button value="" class="downloadBtn" type="submit">
+         <img src="img/download.png" width="30px">
+         Download
+       </button>
+      </form>
+    </div>
+  </section>
 
+  <script>
+    function myFunction(x) {
+      document.getElementById(x).classList.toggle("show");
+    }
 
-	</section>
-	      
-	<script>
-function myFunction(x) {
-  document.getElementById(x).classList.toggle("show");
-}
-
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
       }
     }
-  }
-}
-</script>
+  </script>
 
-     </body>
-     </html>
+  </body>
+  </html>

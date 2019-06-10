@@ -83,7 +83,7 @@ define('DB_SERVER', 'localhost');
 	 				</select>
 	</form>
 
-	<button type="submit" name="orderSubmit">Ordoneaza</button>
+	<button type="submit" name="categorySubmit">Ordoneaza</button>
 	 	</div>
 	 	<div class="center">
 
@@ -143,11 +143,24 @@ else {
    }
 }
 
+  else if(isset($_POST['categorySubmit'])){
+      if($_POST['category']=='0'){
+      if($_POST['so']=='0'){
+        if($_POST['price']=='0'){
+         $sql = "SELECT * from apps where NUME like '%p%' order by RATING desc";
+        }
+      }
+    }
+  }
+
   else{
    $sql = "SELECT * from apps order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
-    }
+  }
 
-}
+} 
+
+  
+
 
 
    $result = $db->query($sql);
@@ -175,38 +188,40 @@ else {
 
 	<?php
     // output data of each row
-    while($row = $result->fetch_assoc()) {
-    	$stars=floor($row['RATING']);
-    	$emptyStars=5-$stars;
+        while($row = $result->fetch_assoc()) {
+      $stars=floor($row['RATING']);
+      $emptyStars=5-$stars;
 
        ?>
        
         <div class="item edit" id="item1">
-        	
-	 			<a href=<?php echo "appUser.php?id=".$row["ID"]; ?>>
-	 				<div class="itemContent">
-	 					<br>
-	 			<img src="img/netflix.png"/>
-                 <p class="itemTitle"> <?php echo $row['NUME'];?> </p>
-	 			 <?php for($i=0;$i<$stars;$i++) {?>
-	 			 <img src="img/star.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
-       				<?php }
-                    for($j=0;$j<$emptyStars;$j++)   {
-       				 ?>
-                    
-       				<img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
-                    <?php }?>
-       				<br>
-                 <p><b> <?php echo ucfirst($row['CATEGORIE']); ?></b></p>
-	 			<p><i> <?php 
-	 			if($row['COST']!=0)
-	 			echo "Pret: ".ucfirst($row['COST'])." lei"; 
-	 		    else
-	 		    	echo "Gratis";
+          
+        <a href=<?php echo "aplicatie.php?id=".$row["ID"]; ?>>
+          <div class="itemContent">
+            <br>
 
-	 			?> </i></p>
-	 			<p><i> <?php echo ucfirst($row['NO_DOWNLOADS']); ?> descarcari</i></p>
-	 		    </div></a>
+        <img  onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['LOGO_SRC']; ?>  />
+                 <p class="itemTitle"> <?php echo $row['NUME'];?> </p>
+         <?php for($i=0;$i<$stars;$i++) {?>
+         <img src="img/star.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
+              <?php }
+                    for($j=0;$j<$emptyStars;$j++)   {
+               ?>
+                    
+              <img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
+                    <?php }?>
+                    
+              <br>
+                 <p><b> <?php echo ucfirst($row['CATEGORIE']); ?></b></p>
+        <p><i> <?php 
+        if($row['COST']!=0)
+        echo "Pret: ".ucfirst($row['COST'])." lei"; 
+          else
+            echo "Gratis";
+
+        ?> </i></p>
+        <p><i> <?php echo ucfirst($row['NO_DOWNLOADS']); ?> descarcari</i></p>
+          </div></a>
                    
 	 	  </div>
           
