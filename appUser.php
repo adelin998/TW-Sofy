@@ -11,15 +11,31 @@
    define('DB_DATABASE', 'sofy');
    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
    $id=$_GET['id'];
+
+
    $sql="SELECT * from apps where ID='$id'";
    $res=mysqli_query($db,$sql);
    $row = $res->fetch_assoc();
    $res->free();
    $idUp=$row['ID_UPLOADER'];
 
+if(isset($_POST['downloadSubmit'])){
+   $idD=$_POST['downloadSubmit'];
+   $sqlDwn="UPDATE apps set NO_DOWNLOADS=(NO_DOWNLOADS+1) where ID='$idD'" ;
+   if($db->query($sqlDwn) === TRUE){
+    header("Location: app_src/".$row['APP_SRC']);
+   }
+
+
+  }
+
+
    $sql1="SELECT * from users where ID='$idUp'";
    $result=mysqli_query($db,$sql1);
    $username=$result->fetch_assoc();
+   $result->free();
+    
+
    $db->close();
 ?>
 
@@ -119,12 +135,17 @@
 	 	<p class="description">Descriere : <br><br><?php  echo $row['DESCRIERE']; ?> </p>
 
 		<div class="downloadForm" >
-	<a href=<?php 
-	echo "app_src/".$row['APP_SRC']; ?> ><button  class="downloadBtn" >
+
+      <form method="post" > 
+	
+  <button  class="downloadBtn" name="downloadSubmit" value=<?php echo $row['ID']; ?> >
 			<img src="img/download.png" width="30px">
 			Download 
 		</button>
-		</a>
+
+  </form>
+
+
 		</div>
 	 	</div>
 

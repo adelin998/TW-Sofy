@@ -20,7 +20,7 @@
    $categorie=$_POST['categorie'];
    $cost=$_POST['cost'];
    $dt=date("Y-m-d");
-   $size=round(($_FILES["fileArhiva"]["size"])/1024000);
+   $size=round(($_FILES["fileArhiva"]["size"])/1024000)+1;
    $arhiva= strtolower(str_replace(' ', '-', basename($_FILES["fileArhiva"]["name"]) ));
    $logo= basename($_FILES["fileLogo"]["name"]);
    $id=$_SESSION["idUser"];
