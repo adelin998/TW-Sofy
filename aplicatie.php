@@ -20,7 +20,7 @@ if(isset($_POST['downloadSubmit'])){
    $idD=$_POST['downloadSubmit'];
    $sqlDwn="UPDATE apps set NO_DOWNLOADS=(NO_DOWNLOADS+1) where ID='$idD'" ;
    if($db->query($sqlDwn) === TRUE){
-    header("Location: app_src/".$row['APP_SRC']);
+    header("Location: app_src/".$idB."/".$row['APP_SRC']);
    }
 
 
@@ -82,7 +82,7 @@ if(isset($_POST['downloadSubmit'])){
     <div class="center centerUser" style="min-height: 800px">
       <h2 class="appTitle"><?php echo $row['NUME']; ?>  </h2><br>
       <div class="leftApp">
-        <img onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['LOGO_SRC']; ?> >
+        <img onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['ID']."/".$row['LOGO_SRC']; ?> >
       </div>
         <div class="rightApp">
           
