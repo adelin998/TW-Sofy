@@ -1110,3 +1110,15 @@ textarea {
 	font-size: 15px;
 	margin-top: 10px;
 }
+
+.left01{
+		width:20%;
+		background:#111b2b;
+		min-height: 380px;
+		float:left;
+		color: #fff;
+		border-radius: 8px ;
+	    margin-right: 1%;
+        text-align: center;
+		
+	}
