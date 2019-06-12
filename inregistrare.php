@@ -23,7 +23,7 @@ if(isset($_POST['regSub'])){
 
   else {
 
-  $select="SELECT count(USERNAME) from users where USERNAME='$username'";
+  $select="SELECT * from users where USERNAME='$username'";
     $result = mysqli_query($db,$select);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
