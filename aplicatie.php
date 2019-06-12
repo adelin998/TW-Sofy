@@ -20,7 +20,7 @@ if(isset($_POST['downloadSubmit'])){
    $idD=$_POST['downloadSubmit'];
    $sqlDwn="UPDATE apps set NO_DOWNLOADS=(NO_DOWNLOADS+1) where ID='$idD'" ;
    if($db->query($sqlDwn) === TRUE){
-    header("Location: app_src/".$idB."/".$row['APP_SRC']);
+    header("Location: app_src/".$id."/".$row['APP_SRC']);
    }
 
 
