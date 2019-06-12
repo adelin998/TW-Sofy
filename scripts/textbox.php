@@ -27,6 +27,8 @@ function drawTextBox($strText, $w, $h, $align='L', $valign='T', $border=true)
 		$dy=($h-$rows*$this->FontSize)/2;
 	if (strtoupper($valign)=='B')
 		$dy=$h-$rows*$this->FontSize;
+	if (strtoupper($valign)=='T')
+		$dy=3;
 
 	$this->SetY($yi+$dy);
 	$this->SetX($xi);
