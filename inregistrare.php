@@ -1,3 +1,63 @@
+<?php
+$ok=5;
+if(isset($_POST['regSub'])){
+
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', 'root');
+   define('DB_PASSWORD', '');
+   define('DB_DATABASE', 'sofy');
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+
+   $username=trim($_POST['username']);
+   $nume=trim($_POST['nume']);
+   $prenume=trim($_POST['prenume']);
+   $dt=date("Y-m-d");
+   $email=$_POST['email'];
+   $pass=trim(md5($_POST['pass']));
+   $cpass=trim(md5($_POST['cpass']));
+
+
+  if($pass != $cpass){
+   $ok=2;
+  }
+
+  else {
+
+  $select="SELECT count(USERNAME) from users where USERNAME='$username'";
+    $result = mysqli_query($db,$select);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
+
+if($count>0){
+   $ok=3;
+}
+
+ else {
+
+$sql = "INSERT INTO users (USERNAME,NUME,PRENUME,EMAIL,PASS,REGISTRATION_DATE,NO_APPS,BLOCK_TAG,PROFILE_IMAGE)
+VALUES ('$username','$nume','$prenume','$email','$pass','$dt',0,0,0)";
+
+if ($db->query($sql) === TRUE) {
+  $ok=1;
+}
+
+else $ok=0;
+
+}
+
+}
+
+
+
+  $db->close();
+}
+
+if($ok==1){
+  header("Location: login.php");
+}
+   
+?>
+
 <!DOCTYPE html>
      
 	 <html>
@@ -28,62 +88,6 @@
 	 </nav>
 <!-- Sfarsit bara de navigare -->
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-       $('#username').focus();
-
-        $("#regSub").click(function () {
-            var username=$('#username').val();
-             var nume=$('#nume').val();
-              var prenume=$('#prenume').val();
-                var email=$('#email').val();
-                 var pass=$('#pass').val();
-                  var cpass=$('#cpass').val();
-
-
-           var result=$('.result').html('');
-
-            if(true){ 
-            	var urltopass='action=reg&username='+username+'&nume='+nume+'&prenume='+prenume+'&email='+email+'&pass='+pass+'&cpass='+cpass;
-
-            	  $.ajax({
-                url: "scripts/checkReg.php",
-                type: 'POST',
-                data: urltopass,
-                success: function (responseText) {
-                    
-                    if(responseText==2){
-                        result.html('<br><br><p>Eroare confirmare parola!</p>');
-                    }
-
-                    if(responseText==3){
-                        result.html('<br><br><p>Acest username exista deja in baza de date!</p>');
-                    }
-
-                    else if(responseText==1) {
-                        window.location='login.php';
-                    } 
-
-                    else
-
-                    if(responseText==0){
-                        result.html('<br><br><p>Eroare sql</p>');
-                    }
-
-                    else
-                    	 result.html('<br><br><p>Eroare sql</p>');
-
-                    
-                }
-            });
-            }
-
-            return false;
-          
-        });
-    });
-    </script>
-
 
 	 <section class="sectionRegister" >
 	 	
@@ -112,7 +116,24 @@
                         </div>
 
                         <br>
-                        <div class="result"></div>
+                        <div class="result"> 
+                        <?php if($ok==0){
+                         echo "Eroare sql!";
+                        } 
+
+                        else
+                          if ($ok==2) {
+                            echo "Confirmare parola gresita!";
+                          }
+
+                          else
+                            if ($ok==3) {
+                              echo "Acest cont exista deja in baza de date!";
+                            }
+
+
+                      ?>
+                         </div>
 
 	 				</form>
 
