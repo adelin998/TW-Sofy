@@ -96,7 +96,7 @@ if(isset($_POST['downloadSubmit'])){
 	 	<div class="center centerUser" style="min-height: 800px">
 	 		<h2 class="appTitle"><?php echo $row['NUME']; ?>  </h2><br>
 	 		<div class="leftApp">
-	 			<img onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['LOGO_SRC']; ?> >
+	 			<img onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['ID']."/".$row['LOGO_SRC']; ?> >
 	 		</div>
        	<div class="rightApp">
        		
@@ -136,15 +136,10 @@ if(isset($_POST['downloadSubmit'])){
 
 		<div class="downloadForm" >
 
-      <form method="post" > 
-	
-  <button  class="downloadBtn" name="downloadSubmit" value=<?php echo $row['ID']; ?> >
-			<img src="img/download.png" width="30px">
-			Download 
-		</button>
-
-  </form>
-
+<form class="form-inline" method="post" action=<?php echo "scripts/generate_pdf.php?id=".$row['ID']; ?> >
+<button type="submit" id="pdf" name="generate_pdf" class="btn-btn-primary"><i class="fa fa-pdf" aria-hidden="true"></i>
+Generate PDF</button>
+</form>
 
 		</div>
 	 	</div>

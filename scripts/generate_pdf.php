@@ -11,7 +11,7 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(60,15,'Lista aplicatii',1,0,'C');
+    $this->Cell(60,15,'Raport Aplicatie',1,0,'C');
     // Line break
     $this->Ln(30);
 	// Ensure table header is printed
@@ -21,7 +21,7 @@ function Header()
 
 // Connect to database
 $link = mysqli_connect('localhost','root','','sofy');
-
+$idApp=$_GET['id'];
 $pdf = new PDF();
 $pdf->AddPage();
 // First table: output all columns
@@ -35,6 +35,6 @@ $prop = array('HeaderColor'=>array(255,150,100),
             'color1'=>array(210,245,255),
             'color2'=>array(255,255,210),
             'padding'=>2);
-$pdf->Table($link,'select NUME, CATEGORIE, RATING, NO_DOWNLOADS, UPLOAD_DATE, COST from apps',$prop);
+$pdf->Table($link,"select NUME, CATEGORIE, RATING, NO_DOWNLOADS, UPLOAD_DATE, COST from apps where ID='$idApp'",$prop);
 $pdf->Output();
 ?>

@@ -198,7 +198,7 @@ else {
 	 				<div class="itemContent">
 	 					<br>
 
-	 			<img  onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['LOGO_SRC']; ?>  />
+	 			<img  onerror="this.onerror=null; this.src='img/default.svg'" src=<?php echo "logo_src/".$row['ID']."/".$row['LOGO_SRC']; ?>  />
                  <p class="itemTitle"> <?php echo $row['NUME'];?> </p>
 	 			 <?php for($i=0;$i<$stars;$i++) {?>
 	 			 <img src="img/star.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >

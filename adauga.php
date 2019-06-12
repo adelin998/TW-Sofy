@@ -40,8 +40,16 @@ else {
 
 if($ok==1){
 
+  $getId="SELECT * from apps ORDER BY ID DESC LIMIT 1";
+  $res2=mysqli_query($db,$getId);
+   $row2 = $res2->fetch_assoc();
+   
+   $idApp=$row2['ID'];
+
+
 	//upload logo
-	$target_dir = "logo_src/";
+  mkdir("logo_src/".$idApp, 0777);
+	$target_dir = "logo_src/".$idApp."/";
 $target_file = $target_dir . basename($_FILES["fileLogo"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -79,7 +87,8 @@ else {
 
 //upload src
 if($uploadOk!=0){
-$target_dir = "app_src/";
+  mkdir("app_src/".$idApp, 0777);
+$target_dir = "app_src/".$idApp."/";
 $target_file = $target_dir . strtolower(str_replace(' ', '-', basename($_FILES["fileArhiva"]["name"]) ));
 $uploadOk1 = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
