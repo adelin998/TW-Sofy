@@ -103,10 +103,10 @@ if ($db->query($sqlUp) === TRUE) {
                         </div>
                         <div class="rightFormProfile">
                         <p><?php echo $username; ?></p><br>
-	 					<input class="inputLogin" type="text"  name="username" placeholder="Nume Utilizator" value=<?php echo $username; ?>><br>
-	 					<input class="inputLogin" type="text" name="nume" placeholder="Numele Dvs." value=<?php echo ucfirst($nume);?> ><br>
-	 					<input class="inputLogin" type="text" name="prenume" placeholder="Prenumele Dvs." value=<?php echo ucfirst($prenume);?>><br>
-	 					<input class="inputLogin" type="text" name="email" placeholder="E-mail" value=<?php echo $email;?>><br>
+	 					<input class="inputLogin" type="text"  name="username" pattern="[a-zA-Z0-9]{5,}" required placeholder="Nume Utilizator" title="Doar caractere alfanumerice ! Minim 5." value=<?php echo $username; ?>><br>
+	 					<input class="inputLogin" type="text" name="nume" placeholder="Numele Dvs." pattern="[a-zA-Z]{5,}" required title="Numele trebuie sa contina doar litere! Minim 5." value=<?php echo ucfirst($nume);?> ><br>
+	 					<input class="inputLogin" type="text" name="prenume" placeholder="Prenumele Dvs." pattern="[a-zA-Z]{5,}" required title="Prenumele trebuie sa contina doar litere! Minim 5." value=<?php echo ucfirst($prenume);?>><br>
+	 					<input class="inputLogin" type="text" name="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required title="Emailul trebuie sa fie de forma characters@characters.domain" value=<?php echo $email;?>><br>
                         </div>
 	 					<div class="regBtn btnProfile">
 
