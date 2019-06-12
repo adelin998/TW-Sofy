@@ -74,9 +74,9 @@ if(isset($_POST['downloadSubmit'])){
 
    <section >
     <div class="left">
-         <div class="dropdown">
-           <button class="back_button" onclick="history.go(-1);">Back </button>
-         </div>
+      <a href="index.php">
+          <button class="back_button">Back </button>
+       </a>
        </div>
 
     <div class="center centerUser" style="min-height: 800px">
