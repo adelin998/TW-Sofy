@@ -152,10 +152,6 @@ if(isset($_POST['downloadSubmit'])){
 
   </form>
 
-<form class="form-inline" method="post" action="scripts/generate_pdf.php">
-<button type="submit" id="pdf" name="generate_pdf" class="btn btn-primary"><i class="fa fa-pdf"" aria-hidden="true"></i>
-Generate PDF</button>
-
     </div>
     </div>
 

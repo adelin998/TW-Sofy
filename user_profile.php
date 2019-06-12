@@ -71,7 +71,7 @@ if ($db->query($sqlUp) === TRUE) {
   <!-- Sfarsit bara de navigare -->
 
 	 <section >
-	 	<div class="left">
+	 	<div class="left01">
 
        <div class="dropdown">
   <a href="user_page.php"><button class="dropbtn"><img class="dropImg" src="img/grid.png" width="22px" height="22px" style="margin-bottom: -3px;">Aplicatiile mele</button></a>
