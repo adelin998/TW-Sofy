@@ -180,16 +180,12 @@ else {
 	 					<textarea type="text" placeholder="Descriere aplicatie" class="inputLogin" rows="4" name="descriere" required ></textarea>
 	 					<select class="inputLogin" name="so" required>
 	 						<option value="" selected style="display:none">Sistemul de operare</option>
-                        	<option value="Windows 10">Windows 10</option>
-                        	<option value="Windows XP">Windows XP</option>
-                        	<option value="Windows Vista">Windows Vista</option>
+                          <option value="Windows Vista">Windows Vista</option>
                         	<option value="Widnows 7">Widnows 7</option>
                         	<option value="Windows 8">Windows 8</option>
-                        	<option value="Windows NT">Windows NT</option>
+                          <option value="Windows 10">Windows 10</option>
                         	<option value="Linux">Linux</option>
                         	<option value="Mac OS">Mac OS</option>
-                        	<option value="iOS">iOS</option>
-                        	<option value="Android">Android</option>
                         </select>
 
                       

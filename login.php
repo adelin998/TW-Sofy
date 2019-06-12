@@ -47,9 +47,11 @@
                         window.location='user_page.php';
                     } 
 
-                    else{
-                    	alert('Error in sql');
+                    if(responseText==-1){
+                        result.html('<br><br><p>Ne pare rau,dar acest cont este blocat momentan!</p>');
                     }
+
+                    
                 }
             });
             }
@@ -71,10 +73,7 @@
   <a href="index.php"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
     <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
      <a href="login.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
-  <form class="searchForm">
-  <input type="text" placeholder="Search..">
-  <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-</form>
+
 </div> 
 	 </nav>
 <!-- Sfarsit bara de navigare -->
@@ -95,7 +94,7 @@
 	 					<input class="inputLogin" id='pass' name="uname" type="password" placeholder=" Parola" minlength="5" required><br>
 	 					<input class="buttonLogin btn1" type="submit" name="submit" id='submit' value="Autentificare">
 
-	 					<a href="inregistrare.html"><input class="buttonLogin btn2" type="button" value="Inregistrare"></a>
+	 					<a href="inregistrare.php"><input class="buttonLogin btn2" type="button" value="Inregistrare"></a>
                         
                         <div class="result"></div>
 

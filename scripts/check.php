@@ -10,9 +10,9 @@
    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
    
     $myusername = trim(mysqli_real_escape_string($db,$_POST['username']));
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      $mypassword = md5(mysqli_real_escape_string($db,$_POST['password'])); 
       
-      $sql = "SELECT ID FROM users WHERE username = '$myusername' and pass= '$mypassword'";
+      $sql = "SELECT * FROM users WHERE username = '$myusername' and pass= '$mypassword'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       
@@ -22,14 +22,26 @@
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
       if($count == 1) {
-         $_SESSION['logged']=true;
-         $_SESSION['login_user'] = $myusername;
+        
          $res=mysqli_query($db,$sql);
          $id=$res->fetch_assoc();
+
+         if($id['BLOCK_TAG']==1)
+         {
+            echo -1;
+         }
+
+         else {
+
+         $_SESSION['logged']=true;
+         $_SESSION['login_user'] = $myusername;
+         
          $_SESSION['idUser']=(int)($id['ID']);
          $_SESSION['img']=rand(1,5);
          
         echo 1;
+     }
+
       }
 
       else {
