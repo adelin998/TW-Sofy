@@ -99,33 +99,33 @@ if ($db->query($sql) === TRUE) {
 
     <?php
 
-
+$id_user=$_SESSION['idUser'];
 if(isset($_POST['searchSubmit'])){
 $value=trim($_POST['searchValue']);
 if(isset($_POST['orderSubmit'])){
     if($_POST['order']=='0'){
-    	 $sql = "SELECT * from apps where NUME like '%$value%'  order by RATING desc";
+    	 $sql = "SELECT * from apps where NUME like '%$value%' and ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by RATING desc";
     }
 
     else if($_POST['order']=='1'){
-     $sql = "SELECT * from apps order by UPLOAD_DATE desc";
+     $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by UPLOAD_DATE desc";
     }
    
   else if($_POST['order']=='2'){
-     $sql = "SELECT * from apps order by NO_DOWNLOADS desc";
+     $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by NO_DOWNLOADS desc";
     }
 
    else if($_POST['order']=='3'){
-     $sql = "SELECT * from apps order by COST asc";
+     $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by COST asc";
     }
 
    else{
-   	 $sql = "SELECT * from apps order by COST desc";
+   	 $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by COST desc";
    }
 }
 
   else{
-   $sql = "SELECT * from apps where NUME like '%$value%' order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
+   $sql = "SELECT * from apps where NUME like '%$value%' and ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
     }
 }
 
@@ -133,28 +133,28 @@ else {
 
    if(isset($_POST['orderSubmit'])){
     if($_POST['order']=='0'){
-    	 $sql = "SELECT * from apps order by RATING desc";
+    	 $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by RATING desc";
     }
 
     else if($_POST['order']=='1'){
-     $sql = "SELECT * from apps order by UPLOAD_DATE desc";
+     $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by UPLOAD_DATE desc";
     }
    
   else if($_POST['order']=='2'){
-     $sql = "SELECT * from apps order by NO_DOWNLOADS desc";
+     $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by NO_DOWNLOADS desc";
     }
 
    else if($_POST['order']=='3'){
-     $sql = "SELECT * from apps order by COST asc";
+     $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by COST asc";
     }
 
    else{
-   	 $sql = "SELECT * from apps order by COST desc";
+   	 $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by COST desc";
    }
 }
 
   else{
-   $sql = "SELECT * from apps order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
+   $sql = "SELECT * from apps where ACCEPT_TAG > 0 and ID_UPLOADER=$id_user order by RATING desc";// where  ID_UPLOADER=".$_SESSION['idUser'];
     }
 
 }
