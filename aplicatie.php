@@ -26,13 +26,33 @@ if(isset($_POST['downloadSubmit'])){
 
   }
 
+  if(isset($_POST['note'])){
+    $val=$_POST['note'];
+     $sqlRating="INSERT INTO rating (ID_APP,VALUE) VALUES ('$id','$val')" ;
+   if($db->query($sqlRating) === TRUE ){
+    //header("Location: aplicatie.php?id=".$id);
+   }
+
+    $sqlSetRating="SELECT avg(VALUE) AS valRating from rating  where ID_APP='$id'" ;
+     $rValue=mysqli_query($db,$sqlSetRating);
+     $resR = $rValue->fetch_assoc();
+     $noteV=$resR['valRating'];
+
+     $sqlUpdateRating="UPDATE apps set RATING='$noteV' where ID='$id'";
+      if($db->query($sqlUpdateRating) === TRUE ){
+    //header("Location: aplicatie.php?id=".$id);
+   }
+   header("Location: aplicatie.php?id=".$id);
+
+  }
+
 
    $sql1="SELECT * from users where ID='$idUp'";
    $result=mysqli_query($db,$sql1);
    $username=$result->fetch_assoc();
    $result->free();
     
-   $sql2="SELECT * from apps where CATEGORIE='$categorie' and ID!= '$id' ORDER BY RATING DESC limit 3";
+   $sql2="SELECT * from apps where CATEGORIE='$categorie' and ID!= '$id' and ACCEPT_TAG > 0 ORDER BY RATING DESC limit 3";
    $result2=mysqli_query($db,$sql2) or die($db->error);
  
 
@@ -64,10 +84,6 @@ if(isset($_POST['downloadSubmit'])){
           <a href="index.php"><img src="img/home.png" width="22px" height="22px" style="margin-bottom: -3px;"> Acasa</a>
           <a href="adauga.php"><img src="img/add.png" width="22px" height="22px" style="margin-bottom: -3px;"> Adauga aplicatie</a>
           <a href="login.php" style="float: right;margin-right: 30px;margin-top: -5px"><img src="img/user.png" width="22px" height="22px" style="margin-bottom: -3px;"> Log in</a>
-          <form class="searchForm">
-            <input type="text" placeholder="Search..">
-            <button type="submit"><img src="img/searchIcon.png" width="22px" height="22px" style="margin-bottom: -3px;"></button>
-          </form>
         </div> 
       </nav>
       <!-- Sfarsit bara de navigare -->
@@ -89,9 +105,16 @@ if(isset($_POST['downloadSubmit'])){
             <ul>
 
                <div class="suggestions" style="float:right; width: 50%; display: flex;flex-direction: column; justify-content: center; align-self: center; text-align: center;">
-               <p> Aplicatii similare: </p>
+              
+                <?php  
+                $aux=0;
+                while($sugestion = $result2->fetch_assoc()) { 
+                if($aux==0){
+                   ?>  <p> Aplicatii similare: </p> <?php
+                     $aux=1;
+                }
+                  ?>
 
-                <?php  while($sugestion = $result2->fetch_assoc()) { ?>
                 <div class="edit2" style="text-align: center; ">
                   <a href= <?php echo "aplicatie.php?id=".$sugestion["ID"]; ?> > 
                   <div class="itemContent2">
@@ -111,9 +134,16 @@ if(isset($_POST['downloadSubmit'])){
               <li>Sistem de operare : <?php echo ucfirst($row['S_O']); ?></li>
               <li>Cost Aplicatie : <?php if($row['COST']==0) echo "Gratis"; else echo $row['COST']; ?></li>
               <li>Taguri : <?php echo $row['TAGS']; ?> </li>
-              <li>Rating : 
+        
+              <li>Descarcari : <?php echo $row['NO_DOWNLOADS'] ; ?></li>
+              <li>Uploadat de : <?php echo $username['USERNAME']; ?> </li>
+               <li>Size : <?php 
+                     echo $row['SIZE'].' MB'; 
+               ?> </li>
+              <li>Data upload : <?php echo $row['UPLOAD_DATE']; ?> </li>
+                   <li>Rating : 
               <?php 
-              $stars=floor($row['RATING']);
+              $stars=round($row['RATING']);
                   $emptyStars=5-$stars;  
                         ?>
 
@@ -125,13 +155,48 @@ if(isset($_POST['downloadSubmit'])){
                     
               <img src="img/emptyStar.png" width="20px" style="margin-bottom: -5px;width:20px;height:20px" >
                     <?php }?> </li>
-              <li>Descarcari : <?php echo $row['NO_DOWNLOADS'] ; ?></li>
-              <li>Uploadat de : <?php echo $username['USERNAME']; ?> </li>
-               <li>Size : <?php 
-                     echo $row['SIZE'].' MB'; 
-               ?> </li>
-              <li>Data upload : <?php echo $row['UPLOAD_DATE']; ?> </li>
 
+
+                    <li><br>
+
+                </li>
+
+
+
+                <style type="text/css">
+               
+                  .setRating{
+                    text-align: center;
+                    background: #ddd;
+                    width: 230px;
+                    color: #19283f;
+                    padding: 10px;
+                    border-radius: 8px;
+                    padding-bottom: 17px;
+                    transition-duration: 0.5s;
+                    margin-left: auto;
+                    margin-right: auto;
+                  }
+
+                  .setRating p{
+                    font-weight: bold;
+                    margin-top: 0px;
+                  }
+
+                  .setRating button{
+                 border: 0px;
+                 background: #ddd;
+                 cursor: pointer;
+                  }
+
+                  .rating-center{
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 40px;
+                  }
+                 
+
+                </style>
          
 
             </ul>
@@ -139,7 +204,9 @@ if(isset($_POST['downloadSubmit'])){
 
         </div>
 
-    <p class="description">Descriere : <br><br><?php  echo $row['DESCRIERE']; ?> </p>
+    <p class="description"> <span  style="" > <br>Descriere : <br><br><?php  echo $row['DESCRIERE']; ?>
+
+   </span>  </p>
 
     <div class="downloadForm" >
 
@@ -152,6 +219,22 @@ if(isset($_POST['downloadSubmit'])){
 
   </form>
 
+  <div class="rating-center">
+                  <form  class="setRating" method="post">
+                <p>  Acorda o nota aplicatiei</p> 
+
+                     <button type="submit" name="note" value="1" onmouseover="rating('1')" onmouseout="hideRating('1')"> <img   onerror="this.onerror=null; this.src='img/star.png'" src="img/emptyStar.png" id="1" width="20px" style=" margin-bottom: -5px;width:25px;height:25px" ></button>
+
+                         <button type="submit" name="note" value="2" onmouseover="rating('2')" onmouseout="hideRating('2')">  <img onerror="this.onerror=null; this.src='img/star.png'" src="img/emptyStar.png" id="2" width="20px" style="margin-bottom: -5px;width:25px;height:25px" ></button>
+                            <button type="submit" name="note" value="3" onmouseover="rating('3')" onmouseout="hideRating('3')">    <img  onerror="this.onerror=null; this.src='img/star.png'" src="img/emptyStar.png" id="3" width="20px" style="margin-bottom: -5px;width:25px;height:25px" ></button>
+                                   <button type="submit" name="note" value="4" onmouseover="rating('4')" onmouseout="hideRating('4')">  <img   onerror="this.onerror=null; this.src='img/star.png'" src="img/emptyStar.png" id="4" width="20px" style="margin-bottom: -5px;width:25px;height:25px" ></button>
+                                       <button type="submit" name="note" value="5" onmouseover="rating('5')" onmouseout="hideRating('5')">   <img  onerror="this.onerror=null; this.src='img/star.png'" src="img/emptyStar.png" id="5" width="20px" style="margin-bottom: -5px;width:25px;height:25px" ></button>
+                                       <p id="result" style="margin-top: 10px;font-weight: bold;margin-bottom: 0px">Parerea ta</p>
+                
+
+                  </form>
+
+</div>
     </div>
     </div>
 
@@ -178,6 +261,74 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+function rating(id) { 
+  if(id==1){
+            document.getElementById(id).src='img/star.png'; 
+            document.getElementById('result').innerHTML='Nu recomand'; 
+          }
+
+          else if(id==2){
+              document.getElementById(id).src='img/star.png'; 
+                document.getElementById(id-1).src='img/star.png'; 
+                 document.getElementById('result').innerHTML='Slab'; 
+          }
+            else if(id==3){
+              document.getElementById(id).src='img/star.png'; 
+                document.getElementById(id-1).src='img/star.png'; 
+                 document.getElementById(id-2).src='img/star.png'; 
+                  document.getElementById('result').innerHTML='Acceptabil'; 
+          }
+               else if(id==4){
+              document.getElementById(id).src='img/star.png'; 
+                document.getElementById(id-1).src='img/star.png'; 
+                 document.getElementById(id-2).src='img/star.png'; 
+                  document.getElementById(id-3).src='img/star.png'; 
+                   document.getElementById('result').innerHTML='Bun'; 
+          }
+                 else if(id==5){
+              document.getElementById(id).src='img/star.png'; 
+                document.getElementById(id-1).src='img/star.png'; 
+                 document.getElementById(id-2).src='img/star.png'; 
+                  document.getElementById(id-3).src='img/star.png'; 
+                     document.getElementById(id-4).src='img/star.png'; 
+                      document.getElementById('result').innerHTML='Excelent'; 
+          }
+    }  
+
+    function hideRating(id){
+ 
+       if(id==1){
+            document.getElementById(id).src='img/emptyStar.png'; 
+
+          }
+
+          else if(id==2){
+              document.getElementById(id).src='img/emptyStar.png'; 
+                document.getElementById(id-1).src='emptyStar.png'; 
+          }
+            else if(id==3){
+              document.getElementById(id).src='img/emptyStar.png'; 
+                document.getElementById(id-1).src='img/emptyStar.png'; 
+                 document.getElementById(id-2).src='img/emptyStar.png'; 
+          }
+               else if(id==4){
+              document.getElementById(id).src='img/emptyStar.png'; 
+                document.getElementById(id-1).src='img/emptyStar.png'; 
+                 document.getElementById(id-2).src='img/emptyStar.png'; 
+                  document.getElementById(id-3).src='img/emptyStar.png'; 
+          }
+                 else if(id==5){
+              document.getElementById(id).src='img/emptyStar.png'; 
+                document.getElementById(id-1).src='img/emptyStar.png'; 
+                 document.getElementById(id-2).src='img/emptyStar.png'; 
+                  document.getElementById(id-3).src='img/emptyStar.png'; 
+                     document.getElementById(id-4).src='img/emptyStar.png'; 
+          }
+    }
+
+
 </script>
 
      </body>

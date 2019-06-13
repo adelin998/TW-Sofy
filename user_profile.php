@@ -32,6 +32,8 @@ if ($db->query($sqlUp) === TRUE) {
       }
 
    $db->close();
+
+ $id_username=$_SESSION['idUser'];
 ?>
 
 
@@ -81,6 +83,9 @@ if ($db->query($sqlUp) === TRUE) {
   <a href="user_profile.php">  <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button></a>
 </div>
 
+ <div class="dropdown">
+ <a href=<?php echo "scripts/generate_pdf.php?id=".$id_username;?>> <button class="dropbtn"><img class="dropImg" src="img/pdf.png" width="22px" height="22px" style="margin-bottom: -3px;">Raport aplicatii</button></a>
+</div>
 
 	 	</div>
 	 	<div class="center">
@@ -104,8 +109,8 @@ if ($db->query($sqlUp) === TRUE) {
                         <div class="rightFormProfile">
                         <p><?php echo $username; ?></p><br>
 	 					<input class="inputLogin" type="text"  name="username" pattern="[a-zA-Z0-9]{5,}" required placeholder="Nume Utilizator" title="Doar caractere alfanumerice ! Minim 5." value=<?php echo $username; ?>><br>
-	 					<input class="inputLogin" type="text" name="nume" placeholder="Numele Dvs." pattern="[a-zA-Z]{5,}" required title="Numele trebuie sa contina doar litere! Minim 5." value=<?php echo ucfirst($nume);?> ><br>
-	 					<input class="inputLogin" type="text" name="prenume" placeholder="Prenumele Dvs." pattern="[a-zA-Z]{5,}" required title="Prenumele trebuie sa contina doar litere! Minim 5." value=<?php echo ucfirst($prenume);?>><br>
+	 					<input class="inputLogin" type="text" name="nume" placeholder="Numele Dvs." pattern="[a-zA-Z]{3,}" required title="Numele trebuie sa contina doar litere! Minim 3." value=<?php echo ucfirst($nume);?> ><br>
+	 					<input class="inputLogin" type="text" name="prenume" placeholder="Prenumele Dvs." pattern="[a-zA-Z]{3,}" required title="Prenumele trebuie sa contina doar litere! Minim 3." value=<?php echo ucfirst($prenume);?>><br>
 	 					<input class="inputLogin" type="text" name="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required title="Emailul trebuie sa fie de forma characters@characters.domain" value=<?php echo $email;?>><br>
                         </div>
 	 					<div class="regBtn btnProfile">

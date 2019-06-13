@@ -37,6 +37,9 @@ if(isset($_POST['downloadSubmit'])){
     
 
    $db->close();
+
+   
+ $id_username=$_SESSION['idUser'];
 ?>
 
 <!DOCTYPE html>
@@ -84,6 +87,9 @@ if(isset($_POST['downloadSubmit'])){
  <a href="user_profile.php"> <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button></a>
 </div>
 
+   <div class="dropdown">
+ <a href=<?php echo "scripts/generate_pdf.php?id=".$id_username;?>> <button class="dropbtn"><img class="dropImg" src="img/pdf.png" width="22px" height="22px" style="margin-bottom: -3px;">Raport aplicatii</button></a>
+</div>
 
 	 	</div>
 

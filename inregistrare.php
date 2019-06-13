@@ -100,12 +100,13 @@ if($ok==1){
 	 					<h1 class="h1Form"> Inregistreaza-te </h1>
 
 	 					<input class="inputLogin" type="text" id="username" placeholder="Nume Utilizator" name="username" title="Doar caractere alfanumerice ! Minim 5." pattern="[a-zA-Z0-9]{5,}" required><br>
-	 					<input class="inputLogin" type="text" id="nume" name="nume" placeholder="Numele Dvs." title="Numele trebuie sa contina doar litere! Minim 5." pattern="[a-zA-Z]{5,}" required><br>
-	 					<input class="inputLogin" type="text" id="prenume" name="prenume" placeholder="Prenumele Dvs." title="Preumele trebuie sa contina doar litere! Minim 5." pattern="[a-zA-Z]{5,}" required><br>
+	 					<input class="inputLogin" type="text" id="nume" name="nume" placeholder="Numele Dvs." title="Numele trebuie sa contina doar litere! Minim 3." pattern="[a-zA-Z]{3,}" required><br>
+	 					<input class="inputLogin" type="text" id="prenume" name="prenume" placeholder="Prenumele Dvs." title="Preumele trebuie sa contina doar litere! Minim 3." pattern="[a-zA-Z]{3,}" required><br>
                     
 
 
-	 					<input class="inputLogin" type="text" id="email" name="email" placeholder="E-mail" title="Emailul trebuie sa fie de forma characters@characters.domain" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+	 					<input class="inputLogin" type="text" id="email" name="email" placeholder="E-mail" 
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
 
 	 					<input class="inputLogin" type="password" id="pass" name="pass" placeholder="Parola" title="Minim 5 caractere de tipul A-Z,a-z,0-9" pattern="[a-zA-Z0-9]{5,}" required><br>
 	 					<input class="inputLogin" type="password" id="cpass" name="cpass" placeholder="Repeta Parola" title="Introduceti aceeasi parola ca mai sus." pattern="[a-zA-Z0-9]{5,}" required><br>

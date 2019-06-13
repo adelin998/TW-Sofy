@@ -48,13 +48,9 @@ else $ok=0;
 
 }
 
-
-
-echo 2;
+echo $ok;
 
   $db->close();
 }
-
-echo 2;
    
 ?>

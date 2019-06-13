@@ -34,6 +34,8 @@ if ($db->query($sql) === TRUE) {
    header("Location: user_page.php");
  }
 
+ $id_username=$_SESSION['idUser'];
+
 ?>
 
 
@@ -85,6 +87,9 @@ if ($db->query($sql) === TRUE) {
  <a href="user_profile.php"> <button class="dropbtn"><img class="dropImg" src="img/profilePic.png" width="22px" height="22px" style="margin-bottom: -3px;">Profilul meu</button></a>
 </div>
 
+       <div class="dropdown">
+ <a href=<?php echo "scripts/generate_pdf.php?id=".$id_username;?>> <button class="dropbtn"><img class="dropImg" src="img/pdf.png" width="22px" height="22px" style="margin-bottom: -3px;">Raport aplicatii</button></a>
+</div>
 
 	 	</div>
 

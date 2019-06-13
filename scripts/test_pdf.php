@@ -52,7 +52,7 @@ function Footer()
 }
 }
 
-$id_aplicatie=$_GET['id'];
+
 $db = new dbObj();
 $connString =  $db->getConnstring();
 
@@ -60,7 +60,7 @@ $display_heading = array( 'NUME'=> 'Name', 'ID_UPLOADER'=> 'Id_uploader', 'CATEG
 
 $titluri= array( "Nume:", "Id_uploader:", "Categorie:", "Sistem operare:", "Taguri:", "Cost:", "Data incarcare:", "Rating:", "Numar descarcari:", "Dimensiune:", "Descriere:");
 
-$result = mysqli_query($connString, "SELECT  NUME, ID_UPLOADER, CATEGORIE, S_O, TAGS, COST, UPLOAD_DATE, RATING, NO_DOWNLOADS, SIZE, DESCRIERE FROM apps where ID='$id_aplicatie'") or die("database error:". mysqli_error($connString));
+$result = mysqli_query($connString, "SELECT  NUME, ID_UPLOADER, CATEGORIE, S_O, TAGS, COST, UPLOAD_DATE, RATING, NO_DOWNLOADS, SIZE, DESCRIERE FROM apps where ID='1'") or die("database error:". mysqli_error($connString));
 $header = mysqli_query($connString, "SHOW columns FROM apps");
 
 $pdf = new PDF_TextBox();
@@ -93,10 +93,7 @@ else{
     $pdf->drawTextBox($column, 100, 10, 'C', 'M');}
 
 $pdf->SetXY(30,$aux);
-if($index==10){
-   $pdf->drawTextBox($titluri[$index], 50, 130, 'C', 'T');}
-else{
-    $pdf->drawTextBox($titluri[$index], 50, 10, 'C', 'M');}
+$pdf->drawTextBox($titluri[$index], 50, 10, 'C', 'M');
 $index=$index+1;
 $aux=$aux+10;
 }
